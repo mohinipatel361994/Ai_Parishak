@@ -1,0 +1,163 @@
+Topic,Question,Image Path,Type of Question
+Polynomials,"ਬਹੁਪਦ 2x+8 ਦੀ ਸਿਫ਼ਰ ਹੈ: The zero of polynomial 2x+8 is:
+(a) 2		(b)- 2		(c) 4		(d) -4
+",no_image,Multiple Choice Questions
+Polynomials,"ਜੇਕਰ 5x-25 ਇੱਕ ਰੇਖੀ ਬਹੁਪਦ ਹੈ, ਤਾਂ ਇਸ ਦੀਆਂ ਕਿੰਨੀਆਂ ਸਿਫ਼ਰਾਂ ਹੋਣਗੀਆਂ?
+If 5x-25 is a linear polynomial, then how many zeros it has?
+(a) 0	(b) 2	(c) 3	(d) 1
+",no_image,Multiple Choice Questions
+Polynomials,"ਚਿੱਤਰ ਵਿੱਚ ਸਿਫ਼ਰਾਂ ਦੀ ਗਿਣਤੀ ਕਿੰਨੀ ਹੈ?
+In Figure 1 find the no. of zeros for y=p(x)?
+(a) 1	(b) 2		(c) 3		(d) ਲੱਭਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ/Can’t be found.
+",all_figures_test/Figure 1.png,Multiple Choice Questions
+Polynomials,"x2-12x-27 ਬਹੁਪਦ ਵਿੱਚ ਸਿਫ਼ਰਾਂ ਦੀ ਵੱਧ ਤੋਂ ਵੱਧ ਗਿਣਤੀ ਕਿੰਨੀ ਹੋ ਸਕਦੀ ਹੈ?
+How many maximum zeros the polynomial x2 -12x-27 can have?
+(a) 0		(b) 2		(c) 3		(d) 4
+",no_image,Multiple Choice Questions
+Polynomials,"ਦਰਸਾਇਆ ਗ੍ਰਾਫ ਕਿਸ ਬਹੁਪਦ ਨੂੰ ਦਰਸਾਉਂਦਾ ਹੈ?
+Given graph in Figure 2 represents which kind of polynomial?
+(a) ਰੇਖੀ ਬਹੁਪਦ / Linear polynomial
+(b) ਦੋ ਘਾਤੀ ਬਹੁਪਦ / Quadratic polynomial
+(c) ਤਿੰਨ ਘਾਤੀ ਬਹੁਪਦ/cubic polynomial
+(d) ਚਾਰ ਘਾਤੀ ਬਹੁਪਦ / bi-quadratic polynomial
+",all_figures_test/Figure 2.png,Multiple Choice Questions
+Polynomials,"ਇੱਕ ਤਿੰਨ ਘਾਤੀ ਬਹੁਪਦ ਦੀਆਂ ਸਿਫ਼ਰਾਂ ਦੀ ਗਿਣਤੀ ______ ਹੁੰਦੀ ਹੈ।
+A cubic polynomial has …………… number of zeros.
+(a) 1		(b) 2	(c) ਵੱਧੋ-ਵੱਧ 3 / Maximum 3	(d) ਇਹਨਾਂ ਵਿੱਚੋਂ ਕੋਈ ਨਹੀਂ / None of above
+",no_image,Multiple Choice Questions
+Polynomials,"ਬਹੁਪਦ ਜਿਸਦਾ ਘਾਤ ਅੰਕ 2 ਹੈ, ਨੂੰ ________ ਕਹਿੰਦੇ ਹਨ?
+A polynomial has 2 as its degree, is called_______
+a) ਇੱਕ ਪਦੀ ਬਹੁਪਦ / monomial		(b)ਦੋ ਪਦੀ ਬਹੁਪਦ / Binomial
+(c) ਰੇਖੀ ਬਹੁਪਦ / Linear polynomial	(d) ਦੋ ਘਾਤੀ ਬਹੁਪਦ / Quadratic polynomial
+",no_image,Multiple Choice Questions
+Polynomials,"ਬਹੁਪਦ x2-bx+c ਵਿੱਚ ਇਸਦੀਆਂ ਸਿਫ਼ਰਾਂ ਦਾ ਜੋੜ _________ ਹੁੰਦਾ ਹੈ।
+In polynomial x2-bx+c sum of its zeros is…………….
+(a) b		(b) c		(c)–b		(d) -c
+",no_image,Multiple Choice Questions
+Polynomials,"ਬਹੁਪਦ 2x2-50 ਦੀਆਂ ਸਿਫ਼ਰਾਂ ________ ਹਨ?
+Zeros of polynomial 2x2-50 is/are ……………..
+(a) 25		(b) 5 ਅਤੇ -5		(c)2 ਅਤੇ 5	(d) 5 ਅਤੇ 5
+",no_image,Multiple Choice Questions
+Polynomials,"ਜੇਕਰ ਕਿਸੇ ਬਹੁਪਦ ਦੀਆਂ ਸਿਫ਼ਰਾਂ α=4 ਅਤੇ β =3 ਜੋਣ ਤਾਂ  ਹੁੰਦਾ ਹੈ।
+If α=4 and β =3 are zeros of a polynomial then
+(a) 7		(b) 12		(c)1		(d) 1.3333…….
+
+
+True and False
+
+ਹੇਠ ਦਿੱਤੇ ਪ੍ਰਸ਼ਨਾਂ ਲਈ ਸਹੀ / ਗਲਤ ਉੱਤਰ ਚੁਣੋ-
+",no_image,Multiple Choice Questions
+Polynomials,"ਰੇਖੀ ਬਹੁਪਦ ਵਿੱਚ ਸਿਫ਼ਰਾਂ ਦਾ ਗੁਣਨਫ਼ਲ ਹਮੇਸ਼ਾ 0 ਹੁੰਦਾ ਹੈ।				(ਸਹੀ/ਗਲਤ)
+In linear polynomial sum of zeros is always 0.
+",no_image,True/False
+Polynomials,"ਜੇਕਰ ਬਹੁਪਦ p(x) ਦਾ ਇੱਕ ਸਿਫ਼ਰ ‘k’ ਹੋਵੇ ਤਾਂ p(k) ਦਾ ਮੁੱਲ 0 ਹੁੰਦਾ ਹੈ।		(ਸਹੀ/ਗਲਤ)
+If polynomial p(x) has one zero ‘k’ then the value of p(k) is 0.
+",no_image,True/False
+Polynomials,"ਦੋ ਘਾਤੀ ਬਹੁਪਦ ਦੇ ਹਮੇਸ਼ਾ ਦੋ ਸਿਫ਼ਰ ਹੁੰਦੇ ਹਨ।					(ਸਹੀ/ਗਲਤ
+Quadratic polynomial has always two zeros.
+",no_image,True/False
+Polynomials,"p(x) ਇੱਕ ਬਹੁਪਦ ਹੈ ਪ੍ਰੰਤੂ p(y) ਨਹੀਂ।						(ਸਹੀ/ਗਲਤ)
+p(x) is a polynomial but p(y) is not.
+",no_image,True/False
+Polynomials,"ਬਹੁਪਦ x-6 ਵਿੱਚ ਸਿਫ਼ਰਾਂ ਦਾ ਜੋੜਫ਼ਲ 6 ਹੈ।						(ਸਹੀ/ਗਲਤ)
+In polynomial x-6 sum of zeros is 6.
+
+",no_image,True/False
+Triangles,"ਜੇਕਰ ABCPQR ਹੈ ਤਾਂ ਹੇਠ ਲਿਖਿਆਂ ਵਿਚੋਂ ਕਿਹੜਾ ਸਹੀ ਹੈ?
+If ABCPQR then which of the following is true?
+(A) BR      	(B) CQ
+(C) AR       (D) AP
+
+",no_image,Multiple Choice Questions
+Triangles,"ਦਿੱਤੇ ਗਏ ਚਿੱਤਰ ਵਿੱਚ DE॥BC ਹੈ। ਜੇ AD = 2cm, AB = 5cm ਅਤੇ BC = 7.5cm
+ਤਾਂ DE ਦਾ ਮੁੱਲ ਪਤਾ ਕਰੋ।
+",no_image,Multiple Choice Questions
+Triangles,"In given Figure 3 DE || BC if AD=2cm, AB=5cm and BC=7.5cm then find the value of DE
+A. 1.5cm          B.2.5cm
+C.  3cm	D. 5cm
+
+
+",all_figures_test/Figure 3.png,Multiple Choice Questions
+Triangles,"ਚਿੱਤਰ ਵਿੱਚ DE॥BC ਹੈ। ਜੇ AD = 5cm , DB = 8cm ਅਤੇ AE = 7.5cm ਹੈ ਤਾਂ EC=?
+In given Figure 4 DE || BC if AD=5cm, DB=8cm and AE=7.5cm then find the value of EC.
+
+(A)8cm		(B) 12cm
+(C)13cm		 (D) 15cm
+
+
+",all_figures_test/Figure 4.png,Multiple Choice Questions
+Triangles,"ਚਿੱਤਰ ਵਿੱਚ DE॥BC ਹੈ। ਜੇ AD = 25cm, AE = 10cm, BD = (x+",no_image,Multiple Choice Questions
+Triangles,"cm ਅਤੇ EC = x cm ਤਾਂ x ਦਾ ਮੁੱਲ ਹੈ:
+In given Figure 5  DE || BC if AD=25cm, AE=10 cm, BD=(x+",all_figures_test/Figure 5.png,Multiple Choice Questions
+Triangles,"cm and EC=x cm then finds the value of x.
+
+A) 2cm   (B)3cm   (C) 4cm   (D)5cm
+
+
+",no_image,Multiple Choice Questions
+Triangles,"ਚਿੱਤਰ ਦਾ ਅਧਿਐਨ ਕਰਕੇ ਹੇਠ ਲਿਖਿਆਂ ਵਿੱਚੋਂ ਸਹੀ ਕਥਨ ਚੁਣੋਂ:
+By observing the following Figure 6 find the correct statement .
+
+
+(A) P= A    (B) P= B
+(C) P= C    (D) none of these
+
+
+",all_figures_test/Figure 6.png,Multiple Choice Questions
+Triangles,"ਚਿੱਤਰ ਵਿੱਚ DE॥BC ਹੈ ਤਾਂ EC ਦਾ ਮੁੱਲ ਪਤਾ ਕਰੋ।
+In the given Figure 7 DE || BC then the value of EC is
+(a) 1cm	(b)2cm		(c)3cm		(d) 4cm
+
+
+",all_figures_test/Figure 7.png,Multiple Choice Questions
+Triangles,"ਦਿੱਤੇ ਚਿਤਰ ਵਿੱਚ P ਦਾ ਮੁੱਲ ਪਤਾ ਕਰੋ।
+In the given Figure 8, the value of P is.
+
+
+(a)600	(b)800
+(c)400	(d)1000
+
+
+
+
+",all_figures_test/Figure 8.png,Multiple Choice Questions
+Triangles,"ਦਿੱਤੇ ਚਿੱਤਰ ਵਿੱਚ ਸਮਰੂਪਤਾ ਦੇ ਕਿਸ ਨਿਯਮ ਦੀ ਵਰਤੋਂ ਕੀਤੀ ਗਈ ਹੈ?
+Which similarity criterion is used for the similarity of the given triangles shown in Figure 9?
+AAA	(b)SSS	(c)SAS	(d)RHS
+
+
+
+",all_figures_test/Figure 9.png,Multiple Choice Questions
+Triangles,"ਦਿੱਤੇ ਚਿੱਤਰ ਵਿੱਚ ਸਮਰੂਪਤਾ ਦੇ ਕਿਸ ਨਿਯਮ ਦੀ ਵਰਤੋਂ ਕੀਤੀ ਗਈ ਹੈ?
+Which similarity criterion is used for the similarity of the given triangles shown in Figure 10?
+
+AAA	(b)SSS	(c)SAS	(d)RHS
+
+True and False
+
+",all_figures_test/Figure 10.png,Multiple Choice Questions
+Triangles,"ਭੁਜਾਵਾਂ ਦੀ ਇੱਕ ਸਮਾਨ ਸੰਖਿਆ ਵਾਲੇ ਦੋ ਬਹੁਭੁਜ ਸਮਰੂਪ ਹੁੰਦੇ ਹਨ ਜੇਕਰ (i) ਉਨ੍ਹਾਂ ਦੇ ਸੰਗਤ ਕੋਣ ਬਰਾਬਰ ਹੋਣ ਅਤੇ (ii) ਉਨ੍ਹਾਂ ਦੀਆਂ ਸੰਗਤ ਭੁਜਾਵਾਂ ਸਮਾਨ ਅਨੁਪਾਤੀ ਹੋਣ।					(ਸਹੀ / ਗਲਤ)
+Two polygons of the same number of sides are similar, if (a) their corresponding angles are equal and (b) their corresponding sides are proportional. 				(True/false)
+
+
+",no_image,Multiple Choice Questions
+Triangles,"ਦੋ ਸਰਬੰਗਸਮ ਆਕ੍ਰਿਤੀਆਂ ਹਮੇਸ਼ਾਂ ਸਮਰੂਪ ਹੁੰਦੀਆਂ ਹਨ।					(ਸਹੀ / ਗਲਤ)
+Two congruent figures are always similar. 						(True/false)
+
+
+
+",no_image,True/False
+Triangles,"All…………………triangles are similar. ਸਾਰੇ ……………… ਤ੍ਰਿਭੁਜ ਸਮਰੂਪ ਹੁੰਦੇ ਹਨ।
+
+",no_image,Fill in the Blanks
+Triangles,"All circles are……………………………ਸਾਰੇ ਚੱਕਰ ………………ਹੁੰਦੇ ਹਨ।
+
+",no_image,Fill in the Blanks
+Triangles,"All squares are ……………………….ਸਾਰੇ ਵਰਗ ……………… ਹੁੰਦੇ ਹਨ।
+
+",no_image,Fill in the Blanks
+Triangles,"ਭੁਜਾਵਾਂ ਦੀ ਇੱਕ ਸਮਾਨ ਸੰਖਿਆ ਵਾਲੇ ਦੋ ਬਹੁਭੁਜ ਸਮਰੂਪ ਹੁੰਦੇ ਹਨ ਜੇਕਰ (i) ਉਨ੍ਹਾਂ ਦੇ ਸੰਗਤ ਕੋਣ …………… ਹੋਣ ਅਤੇ (ii) ਉਨ੍ਹਾਂ ਦੀਆਂ ਸੰਗਤ ਭੁਜਾਵਾਂ ___________ ਹੋਣ।
+Two polygons of the same number of sides are similar, if (a) their corresponding angles are ………………….and (b) their corresponding sides are ……………………
+
+
+",no_image,Fill in the Blanks
