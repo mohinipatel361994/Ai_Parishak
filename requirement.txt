@@ -1,6 +1,7 @@
 json
 langchain
 langchain.llm
+from langchain.llms import OpenAI
 chat
 openai
 streamlit
