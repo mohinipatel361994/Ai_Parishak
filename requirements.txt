@@ -1,8 +1,3 @@
-streamlit==1.10.0
-Pillow==9.1.1
-langchain==0.0.8
-openai==0.27.0
-python-dotenv==0.21.0
 langchain
 chat
 openai
@@ -41,8 +36,6 @@ create_word_doc
 get_text
 subprocess
 re
-dotenv
-load_dotenv
 docxlatex
 Document
 base64
