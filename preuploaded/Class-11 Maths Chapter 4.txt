@@ -1,0 +1,606 @@
+
+Page_Number 0 started
+Chapter
+
+1076CHOS
+
+COMPLEX NUMBERS AND
+
+QUADRATIC EQUATIONS
+
+“Mathematics is the Queen of Sciences and Arithmetic is the Queenof
+Mathematics. — GAUSS “%
+
+4.1 Introduction
+
+In earlier classes, we have studied linear equations in one
+and two variables and quadratic equations in one variable.
+We have seen that the equation x° + 1 = 0 has no real
+solution as x* + 1 = 0 gives x° =— 1 and square of every
+real number is non-negative. So, we need to extend the
+real number system to a larger system so that we can
+find the solution of the equation x? =— 1. In fact, the main
+objective is to solve the equation ax? + bx + c= 0, where
+D=b* — 4ac <0, which is not possible in the system of
+real numbers.
+
+W. R. Hamilton
+4.2 Complex Numbers (1805-1865)
+
+Let us denote ./—] by the symbol i. Then, we have i? =-1, This means that i is a
+solution of the equation x? + 1 = 0.
+A number of the form a + ib, where a and b are real numbers, is defined to be a
+
+(-l
+complex number. For example, 2 + 3, (—1) + i3 4+i [= are complex numbers.
+
+For the complex number z = a + ib, a is called the real part, denoted by Re z and
+bis called the imaginary part denoted by Im z of the complex number z. For example,
+ifz=2+i5, then Rez=2 andImz=5S.
+
+Two complex numbers z, = a + ib and z, = c + id are equal if a=c and b=d.
+
+2024-25
+
+Page_Number 0 ended
+/n
+Page_Number 1 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 77
+
+Example | If 4x + i(3x —y) = 3 +i (— 6), where x and y are real numbers, then find
+the values of x and y.
+
+Solution We have
+4x +i (3x-—y)=3 +i (-6) . (1)
+Equating the real and the imaginary parts of (1), we get
+4x = 3, 3x-y=-6,
+: . . 3 33
+which, on solving simultaneously, give * = 4 and y= re
+4.3 Algebra of Complex Numbers
+In this Section, we shall develop the algebra of complex numbers.
+
+4.3.1 Addition of two complex numbers Let z, = a+ ib and z, = c + id be any two
+complex numbers. Then, the sum z, + z, is defined as follows:
+z,+2,=(a+c)+i(b +d), which is again a complex number.
+For example, (2 + 73) + (— 6 +75) = (2-6) +i (3 +5)=—-4+78
+The addition of complex numbers satisfy the following properties:
+
+(i) The closure law The sum of two complex numbers is a complex
+number, i.e., z, + Z, is a complex number for all complex numbers
+z, and z,.
+
+(ii) The commutative law For any two complex numbers z, and z,,
+Z, 42,5242,
+
+(iii) The associative law For any three complex numbers z,, z
+(2, +2,)+2,=2,+ (,+2,).
+
+(iv) The existence of additive identity There exists the complex number
+0 + i 0 (denoted as 0), called the additive identity or the zero complex
+number, such that, for every complex number z, z + 0 =z.
+
+(v) The existence of additive inverse To every complex number
+z=a+ ib, we have the complex number — a + i(— 5) (denoted as — z),
+called the additive inverse or negative of z. We observe that z + (-z) = 0
+(the additive identity).
+
+2 23>
+
+4.3.2. Difference of two complex numbers Given any two complex numbers z, and
+z,, the difference z, —z, is defined as follows:
+
+Z,-2Z,=2,+(-2).
+For example, (6 + 3i)—- (2-1) = (6+ 31) +(—2 +1) =4+4i
+and (2— i)-(6+ 31) =(2-i) + (- 6-31) =—-4-4i
+
+2024-25
+
+Page_Number 1 ended
+/n
+Page_Number 2 started
+78
+
+MATHEMATICS
+
+4.3.3 Multiplication of two complex numbers Let z,= a + ib and z, = c + id be any
+two complex numbers. Then, the product z, z, is defined as follows:
+
+Z, 2, = (ac — bd) + i(ad + be)
+
+For example, (3 + 75) (2 + 16) = (3 x 2—5 x 6) + i(3 x 6 +5 x 2) =— 24 + 128
+The multiplication of complex numbers possesses the following properties, which
+we state without proofs.
+
+0)
+(ii)
+(iii)
+(iv)
+
+(vy)
+
+(vi)
+
+The closure law The product of two complex numbers is a complex number,
+the product z, z, is a complex number for all complex numbers z, and z,.
+The commutative law For any two complex numbers z, and z,,
+Z, Z, = 2, zy,
+The associative law For any three complex numbers z,, z
+(2, Z,) 2, =2, (2, 2
+The existence of multiplicative identity There exists the complex number
+1 +70 (denoted as 1), called the multiplicative identity such that z.1 = z,
+for every complex number z.
+The existence of multiplicative inverse For every non-zero complex
+number z = a + ib or a + bi(a # 0, b # 0), we have the complex number
+
+2? 23
+
+a - 1
+— + 5 —— = 1 eat ft |
+Pak Gab (denoted by : orz), called the multiplicative inverse
+
+of z such that
+z.—=1 (the multiplicative identity).
+Zz
+The distributive law For any three complex numbers z
+
+(a) z, (@,+2,)=2,2,+2, 2,
+(b) (Z, + z,) 2,52, 2, +2, 2;
+
+12 2y9 23
+
+4.3.4 Division of two complex numbers Given any two complex numbers z, and z,,
+
+wt
+where z, #0, the quotient a is defined by
+
+Forexample, let z,=6+ 3iand z,=2-7
+
+Then
+
+Ae
+
+4] 2 _ -(-))
+: -(6+3x4] = (6+3i) ie
+
+2024-25
+
+Page_Number 2 ended
+/n
+Page_Number 3 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 79
+
+d4i
+- (6+3)(224) = ; [12-3+i(6+6)] =3(9+121
+4.3.5 Power of i we know that
+
+P=Pi=(-l)iz-i, =(i°) = (-1)"=1
+
+In general, for any integer k, = 1, i *' =i, M4? =—-1, M3 =-7
+
+4.3.6 The square roots of a negative realnumber
+
+Note that ? =-l and (-iP=?=-1
+
+Therefore, the square roots of — | are i, i. However, by the symbol ./-7 , we would
+mean i only.
+
+Now, we can see that i and —7 both are the solutions of the equation x* + 1 = 0 or
+e=-l,
+
+Similarly (Vi) =(v3) P=3(-1)=-3
+
+Therefore, the square roots of —3 are V3 i and -3 i.
+Again, the symbol ./—3 is meant to represent V3i only, i.e., —3 = J3i.
+
+Generally, if.a is a positive real number, J—-a = Ja V-1 = Ja i,
+
+We already know that Jax Jb = Jab for all positive real number a and b. This
+
+result also holds true when either a>0,b<0 ora<0, b> 0. What ifa<0,b<0?
+
+Let us examine.
+
+Note that
+
+2024-25
+
+Page_Number 3 ended
+/n
+Page_Number 4 started
+80 MATHEMATICS
+
+? =J-1 V-1=,/(-1) (-1) (by assuming fax Jé = Jab for all real numbers)
+= vi = 1, which is a contradiction to the fact that i? =-1,
+Therefore, fa x./b #Jab if both a and b are negative real numbers.
+
+Further, if any of a and b is zero, then, clearly, Vax vb = Jab = 0.
+4.3.7 Identities We prove the following identity
+
+2
+(z, + Z) = Zz + Zz + 2z,Z,, for all complex numbers z, and z,.
+
+Proof We have, (z, + z,) = (2, + 2,) @, + 2,),
+
+= (2,+2,)2,+(@, +2) 2, (Distributive law)
+= zp t+.252, 42,2) +25 (Distributive law)
+= Zz +242) +22) + Zz (Commutative law of multiplication)
+
+= 2 2
+Z, +22,2, +25
+
+Similarly, we can prove the following identities:
+. 2
+(i) (2,-2,) =z) -22z, 2 +23
+.. 3
+(i) (2.42) =2) +32; 2, +3225 +23
+eee 3 3 2 2 3
+(ii) (z,-2,) =z) -32; 2, +3223 -23
+
+iv) 2-25 =(4,+2))(4-2)
+In fact, many other identities which are true for all real numbers, can be proved
+
+to be true for all complex numbers.
+
+Example 2 Express the following in the form of a + bi:
+
+(i) (-5/) (*) Gi) (-é) (2/) (-4)
+
+y(1.)  -5 5 5 5
+Solution (i) (-s)(37] = P= 7 (-1) = a" 3ti0
+
+1\ 1 1 2 1
+- -i) (23) | —-3 _2 so _ 2 a :
+ai) (-)( a( x “8x8x8 756") 356."
+
+2024-25
+
+Page_Number 4 ended
+/n
+Page_Number 5 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 81
+
+Example 3 Express (5 — 3i) in the form a + ib.
+
+Solution We have, (5 — 31)? = 53-3 x 5? x (31) +3 x 5 (31 — (37)
+= 125— 225i-135+27i =— 10—- 198i.
+
+Example 4 Express (-v3 + V-2)(2v3 -i) in the form of a + ib
+
+Solution We have, (-v3 +=) (2V3-i) = (-v3+2i) (2v3-1)
+= -6 + 31+ 2V6i—J27? = (-6+ V2) +V3(1+2V2)i
+
+4.4 The Modulus and the Conjugate of a Complex Number
+
+Let z= a+ib be acomplex number. Then, the modulus of z, denoted by | z |, is defined
+
+to be the non-negative real number ./q? +h? ,i.e.,|z|= Va? +5? and the conjugate
+
+of z, denoted as 7, is the complex number a — ib, i.e., 7 =a— ib.
+For example, |3+7[=v3? +P = -10, lan 5° =/29,
+
+and 34i=3-7, 2-5i=245i, 3j=5 =3i-
+
+Observe that the multiplicative inverse of the non-zero complex number z is
+given by
+
+1 a . —b a-ib Zz
+hs 7 = 93 tI = a = 2
+at+ib a+b a+b a+b |z|
+_ 2
+or zz=|2|
+
+Furthermore, the following results can easily be derived.
+
+For any two compex numbers z, and z, , we have
+
+FE 1 P provided | Z5 |#0
+
+@ |24/=lalla| @
+
+ey . — -.r- 24 \_ 7 .
+(ili) 2,2, =z, 2) (iv) z, +2, =z, +z, (Vv) [2] = z provided z, # 0.
+
+2024-25
+
+Page_Number 5 ended
+/n
+Page_Number 6 started
+82 MATHEMATICS
+
+Example 5 Find the multiplicative inverse of 2 — 33.
+Solution Letz=2- 3i
+
+Then Z=2+3iand = |z/=2?+(-3)=13
+Therefore, the multiplicative inverse of 2 — 3; is given by
+Z 2431 2° 3,
+
+5 =—4+ i
+izf B BoB
+
+zi=
+
+The above working can be reproduced in the following manner also,
+
+238i
+7 2-3) (2—-3i)(2 +31)
+
+24+3i 2431 2 3,
+Pay Bb B13
+—(3i)
+
+Example 6 Express the following in the form a + ib
+
+. S+V2i ay pos
+0 (i i
+
+solution G) Weh 5+V2i_5+V2i 142i _5+5V2i+ 2i-2
+olution (i) We have, Ja 1 Vai 14. V2i 1-(V2iy
+
+_ 3+6V2i _ 3(1+ 2V2i) 423i.
+14+2 3
+
+EXERCISE 4.1
+
+Express each of the complex number given in the Exercises 1 to 10 in the
+form a + ib.
+
+y{ 3,
+1. (si -2:] 2. 479 3. 7
+
+2024-25
+
+Page_Number 6 ended
+/n
+Page_Number 7 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 83
+
+4. 37 +i) +i(7+i7) 5. (1) -(-1+ 16)
+
+6. (5+i2)-[4+:3] 7, (G+) +(4+5)|-(4+4
+5.5 2 3. 3 3 3
+
+3 3
+
+8. Ud -i 9. (4+3)] 10. (2-4)
+
+Find the multiplicative inverse of each of the complex numbers given in the
+Exercises 11 to 13.
+
+ll. 4-33 12. 543; 13. -i
+
+14. Express the following expression in the form of a+ ib:
+(3+iv5) (3-iV5)
+(88i)-(5-n3)
+
+4.5 Argand Plane and Polar Representation
+
+We already know that corresponding to
+each ordered pair of real numbers
+(x, y), we get a unique point in the XY-
+plane and vice-versa with reference to a
+set of mutually perpendicular lines known
+as the x-axis and the y-axis. The complex
+number x + iy which corresponds to the
+ordered pair (x, y) can be represented
+geometrically as the unique point P(x, y)
+in the XY-plane and vice-versa.
+
+Some complex numbers such as
+2+4i,-2+3i,0+ 1i,2+0i,-5—2iand
+1 — 2i which correspond to the ordered
+pairs (2, 4), ( — 2, 3), (0, 1), (2, 0), (-5, -2), and (1, — 2), respectively, have been
+represented geometrically by the points A, B, C, D, E, and F, respectively in
+the Fig 4.1.
+
+The plane having a complex number assigned to each of its point is called the
+
+Fig 4.1
+
+complex plane or the Argand plane.
+
+2024-25
+
+Page_Number 7 ended
+/n
+Page_Number 8 started
+84 MATHEMATICS
+
+Obviously, in the Argand plane, the modulus of the complex number
+
+xt+iy =x? + y? is the distance between the point P(x, y) and the origin O (0, 0)
+
+(Fig 4.2). The points on the x-axis corresponds to the complex numbers of the form
+a+i0 and the points on the y-axis corresponds to the complex numbers of the form
+
+Fig 4.2
+
+y'
+0 +75. The x-axis and y-axis in the Argand plane are called, respectively, the real axis
+and the imaginary axis.
+The representation of a complex number z = x + iy and its conjugate
+z =x -—iy in the Argand plane are, respectively, the points P (x, y) and Q (x, —y).
+Geometrically, the point (x, —y) is the mirror image of the point (x, y) on the real
+axis (Fig 4.3).
+
+Y
+P(x, y)
+x
+x (s)
+Q@,-y)
+Fig 4.3
+
+2024-25
+
+Page_Number 8 ended
+/n
+Page_Number 9 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 85
+Miscellaneous Examples
+
+(3—2i)(2 + 3)
+Example 7 Find the conjugate of d+2)(2-1 .
+
+Solution We have , (1+ 21 (2-1)
+
+6+9i-4i+6 12451 431
+2-i+4i4+2 443i 4-37
+
+48-36i+20i+15 63-167 63 16.
+
+=—-—i
+16+9 25 25 25
+
+(3-2i)(2+3i), 63 16,
+Therefore, conjugate of d+2iI2-1) 1s 35 4 35.
+
+a+ib
+Example 8 Ifx + iy= 7p » prove that P+y=t.
+
+Solution We have,
+
+(a+ib)(a+ib) a’-b?+2abi a*®-b? ~—-2ab
+
+TED (@-ib(atib) +h a 4b 4b
+—  a@-b 2ab
+So that, x- iy = ae Pap
+Therefore,
+
+(a -b’y 4a*b (a? +b’)
+
+ety =(x + iy) «-iy)= (@ +by “@ +by _ (a? +b?)
+
+Miscellaneous Exercise on Chapter 4
+
+253
+; 1
+1. Evaluate: "() .
+
+2. For any two complex numbers z, and z,, prove that
+
+Re (z, z,) = Rez, Re z, — Imz, Imz,
+
+2024-25
+
+Page_Number 9 ended
+/n
+Page_Number 10 started
+10.
+
+11.
+
+12.
+13.
+
+14.
+
+MATHEMATICS
+
+1 2 3-47
+Reduce | 77>, to the standard form .
+
+1-41 14i)\54i
+If x-iv= a—ib that (x? + 2p et
+” Ve-ig Proves 7) OP
+. Se (F224!
+Ifz,=2-—i,2z,=1 +i, find Z,—Z) 4)"
+2.4)2
+ (xti? og, SD +
+Ifat+ib= rn that 2+ b= (2x? +1) :
+
+Let z,=2-i,z,=—2 +i. Find
+
+Zz. 1
+
+Find the real numbers x and y if (x — iy) (3 + 5i) is the conjugate of -6 — 247.
+
+Find the modulus of I ei:
+
+iN
+uv 2 2
+If (x + ivy =u +h, then show that ty Ae -y)-
+
+Baa
+If a and B are different complex numbers with | B | =1, then find ; —ap
+
+Find the number of non-zero integral solutions of the equation | 1- il’ =2*.
+If (a + ib) (c + id) (e + if) (g + ih) =A + iB, then show that
+(@ +B) (2 + &) (2 +f?) (g? +h’) = A? + B?
+
+14i)"
+If | =1 then find the least positive integral value of m.
+
+2024-25
+
+Page_Number 10 ended
+/n
+Page_Number 11 started
+COMPLEX NUMBERS AND QUADRATIC EQUATIONS 87
+
+Summary
+
+A number of the form a + ib, where a and 5 are real numbers, is called a
+complex number, a is called the real part and b is called the imaginary part
+of the complex number.
+
+@ Let z, =a + ib and z,=c + id. Then
+
+(i) z,+2z,=(at+c)t+i(b+d)
+(ii) z, z, = (ac — bd) + i (ad + bc)
+For any non-zero complex number z = a + ib (a # 0, b # 0), there exists the
+a —b
+
+. 1
+—— +i—— 1
+complex number Gah gab? denoted by : or z!, called the
+
+multiplicative inverse of z such that (a + ib) =1+i0
+
+oe;
+a+ ath?
+
+=1
+@ For any integer k, i = 1, 9! =i, 2 =- 1, M3 S-7
+
+@ The conjugate of the complex number z = a + ib, denoted by Z , is given by
+Z =a-ib.
+
+Historical Note
+
+The fact that square root of a negative number does not exist in the real number
+system was recognised by the Greeks. But the credit goes to the Indian
+mathematician Mahavira (850) who first stated this difficulty clearly. “He
+mentions in his work ‘Ganitasara Sangraha’ as in the nature of things a negative
+(quantity) is not a square (quantity)’, it has, therefore, no square root’.
+Bhaskara, another Indian mathematician, also writes in his work Bijaganita,
+written in 1150. “There is no square root of a negative quantity, for it is nota
+square.” Cardan (1545) considered the problem of solving
+
+x+y=10, xy = 40.
+
+2024-25
+
+Page_Number 11 ended
+/n
+Page_Number 12 started
+88 MATHEMATICS
+
+He obtained x =5+
+was discarded by him by
+Girard (about 1625) accey
+this will enable us to get as
+Euler was the first to ini
+(about 1830) regarded th
+numbers (a, b) thus giving it
+of the so called ‘imaginary n
+
+15 as the solution of it, which
+bers are ‘useless’. Albert
+ative numbers and said that
+of the polynomial equation.
+r f—1 and WR. Hamilton
+ib as an ordered pair of real
+cal definition and avoiding use
+
+2024-25
+
+Page_Number 12 ended
