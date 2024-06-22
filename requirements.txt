@@ -1,5 +1,4 @@
 langchain
-chat
 openai
 streamlit
 OpenAI
