@@ -1,17 +1,13 @@
 langchain
-chat
 openai
 streamlit
 OpenAI
-os
 pandas
 rag
 PIL
-chat
 numpy
 Image
 load_chain
-initialise_prompt
 prompts
 pytesseract
 pdf2image
@@ -27,9 +23,6 @@ ConversationChain
 langchain.memory
 ConversationBufferMemory
 docx
-ai_prompt
-ai_topic_prompt
-latex_prompt
 functions
 read_word_table
 create_word_doc
@@ -79,8 +72,6 @@ PromptTemplate
 langchain.chains.question_answering 
 load_qa_chain
 langchain.chat_models 
-AzureChatOpenAI
-pytesseract
 Output
 TesseractError
 functions 
