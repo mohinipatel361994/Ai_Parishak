@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-#client = OpenAI()
+client = OpenAI()
 
 st.set_page_config(layout='wide')
 
@@ -59,17 +59,17 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-#os.environ["OPENAI_API_KEY"] = "sk-proj-0gsfcpJwdervVNxaz2gVT3BlbkFJUAYTsgyfNxgNd1bsHi6r"
+os.environ["OPENAI_API_KEY"] = "sk-proj-hlZjB02IHIvljiuJjQiMT3BlbkFJXB0gpja0YIloY1axNtGM"
 
 
 # Get the OpenAI API key from environment variables
-openai_api_key = os.getenv("OPENAI_API_KEY")
+#openai_api_key = os.getenv("OPENAI_API_KEY")
 
-if openai_api_key is None:
-    raise ValueError("OpenAI API key not found in environment variables")
+#if openai_api_key is None:
+    #raise ValueError("OpenAI API key not found in environment variables")
 
 # Initialize the OpenAI client
-openai.api_key = openai_api_key
+#openai.api_key = openai_api_key
 
 
 def get_base64(bin_file):
