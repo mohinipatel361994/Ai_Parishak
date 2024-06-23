@@ -28,7 +28,7 @@ import pytesseract
 from pytesseract import Output, TesseractError
 from functions import convert_pdf_to_txt_pages, convert_pdf_to_txt_file, save_pages, displayPDF, images_to_txt
 from prompts import filter_prompt2,initialise_prompt,master_prompt,lang_prompt,format_prompt,ai_prompt,aiformat_prompt,mcq_test_prompt,key_term_prompt,learn_outcome_prompt,student_prompt
-import chromadb
+#import chromadb
 import os
 import nltk
 import constants
