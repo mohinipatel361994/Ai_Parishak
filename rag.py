@@ -7,7 +7,8 @@ import weaviate
 import prompts
 import utils
 import logging
-from langchain.chat_models import AzureChatOpenAI
+#from langchain_openai import ChatOpenAI
+#from langchain.chat_models import AzureChatOpenAI
 from dotenv import load_dotenv
 from openai import OpenAI
 client = OpenAI()
@@ -23,7 +24,7 @@ logger = logging.getLogger(__name__)
 #os.environ["OPENAI_APIKEY"] = "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"
 
 
-GPT_MODELS = ["gpt-4turbo"]
+GPT_MODELS = ["gpt-3.5-turbo"]
 ALL_MODELS = GPT_MODELS
 
 #openai.api_key = os.environ["OPENAI_APIKEY"]
