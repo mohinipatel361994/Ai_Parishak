@@ -13,4 +13,4 @@ logging
 constants
 prompts
 rag
-weaviate
+
