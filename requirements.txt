@@ -17,4 +17,4 @@ Pillow
 Callable
 PyPDF2
 docxlatex
-fixed_function
+docx2txt
