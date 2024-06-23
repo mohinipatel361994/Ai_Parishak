@@ -15,4 +15,5 @@ prompts
 rag
 Pillow
 Callable
+PyPDF2
 
