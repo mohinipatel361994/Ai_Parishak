@@ -12,4 +12,5 @@ requests
 logging
 constants
 prompts
-
+Pillow
+rag
