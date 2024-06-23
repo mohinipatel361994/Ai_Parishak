@@ -59,9 +59,9 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-os.environ["OPENAI_API_KEY"] = "sk-proj-hlZjB02IHIvljiuJjQiMT3BlbkFJXB0gpja0YIloY1axNtGM"
+#os.environ["OPENAI_API_KEY"] = "sk-proj-hlZjB02IHIvljiuJjQiMT3BlbkFJXB0gpja0YIloY1axNtGM"
 
-
+openai.api_key = os.environ["OPENAI_API_KEY"]
 # Get the OpenAI API key from environment variables
 #openai_api_key = os.getenv("OPENAI_API_KEY")
 
