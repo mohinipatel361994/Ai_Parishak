@@ -59,17 +59,17 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-os.environ["OPENAI_API_KEY"] = "sk-proj-0gsfcpJwdervVNxaz2gVT3BlbkFJUAYTsgyfNxgNd1bsHi6r"
+#os.environ["OPENAI_API_KEY"] = "sk-proj-0gsfcpJwdervVNxaz2gVT3BlbkFJUAYTsgyfNxgNd1bsHi6r"
 
 
 # Get the OpenAI API key from environment variables
-#openai_api_key = os.getenv("OPENAI_API_KEY")
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
-#if openai_api_key is None:
-   # raise ValueError("OpenAI API key not found in environment variables")
+if openai_api_key is None:
+     aise ValueError("OpenAI API key not found in environment variables")
 
-# Initialize the OpenAI client
-#openai.api_key = openai_api_key
+#Initialize the OpenAI client
+openai.api_key = openai_api_key
 
 TEMP_MD_FILE = r"question.pdf"
 TEMP_PDF_FILE = "__temp.pdf"
