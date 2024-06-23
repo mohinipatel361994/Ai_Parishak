@@ -16,5 +16,4 @@ rag
 Pillow
 langchain_community
 langchain_openai
-
-
+PyPDF2
