@@ -1,12 +1,15 @@
-numpy
+streamlit==1.0.0
+pillow==8.4.0
+pytesseract==0.3.8
+easyocr==1.4.1
+opencv-python-headless==4.5.3.56
+numpy==1.21.2
 pandas
 requests
 langchain
 chat
 openai
-streamlit
 rag
-Pillow
 prompts
 pytesseract
 pdf2image
@@ -23,8 +26,6 @@ nltk
 docx2txt
 docxlatex
 pdfminer.six
-easyocr
-opencv-python
 loguru==0.5.3
 typing
 weaviate
