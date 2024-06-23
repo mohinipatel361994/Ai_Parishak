@@ -20,3 +20,4 @@ PyPDF2
 python-dotenv
 docxlatex
 docx2txt
+pdf2image
