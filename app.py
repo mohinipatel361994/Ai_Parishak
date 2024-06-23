@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-client = OpenAI()
+#client = OpenAI()
 
 st.set_page_config(layout='wide')
 
