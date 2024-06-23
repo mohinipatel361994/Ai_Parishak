@@ -19,7 +19,6 @@ functions
 dotenv
 docxlatex
 fixed_function
-python_version>=3.6
 chromadb
 nltk
 docx2txt
