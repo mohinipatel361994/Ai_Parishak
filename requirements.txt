@@ -8,5 +8,4 @@ python-docx
 pdf2image
 nltk
 protobuf
-logging
 requests
