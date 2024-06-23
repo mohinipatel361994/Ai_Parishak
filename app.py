@@ -66,13 +66,10 @@ images = ['6MarkQ']
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if openai_api_key is None:
-   aise ValueError("OpenAI API key not found in environment variables")
+    raise ValueError("OpenAI API key not found in environment variables")
 
-#Initialize the OpenAI client
+# Initialize the OpenAI client
 openai.api_key = openai_api_key
-
-TEMP_MD_FILE = r"question.pdf"
-TEMP_PDF_FILE = "__temp.pdf"
 
 
 def get_base64(bin_file):
