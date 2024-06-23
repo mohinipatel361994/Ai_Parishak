@@ -1,4 +1,5 @@
 streamlit
-langchain==0.2.5
+langchain
+openai
 
 
