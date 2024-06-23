@@ -2,7 +2,7 @@ from typing import Callable
 import openai
 import os
 #from weaviate.util import generate_uuid5
-import weaviate
+#import weaviate
 #import db
 import prompts
 import utils
