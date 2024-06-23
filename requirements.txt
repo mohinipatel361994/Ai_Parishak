@@ -12,5 +12,6 @@ requests
 logging
 constants
 prompts
-Pillow
-rag
+rag>=1.0.0
+Pillow>=8.0.0
+weaviate>=2.0.0
