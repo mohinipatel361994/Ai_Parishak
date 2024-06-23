@@ -6,3 +6,4 @@ functions
 pdfminer.six
 python-docx
 pdf2image
+chromadb
