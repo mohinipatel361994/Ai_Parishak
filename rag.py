@@ -9,6 +9,8 @@ import utils
 import logging
 from langchain.chat_models import AzureChatOpenAI
 from dotenv import load_dotenv
+from openai import OpenAI
+client = OpenAI()
 #from langchain.llms import AzureOpenAI
 
 
@@ -45,7 +47,7 @@ class RAGTask:
         # else:
         #     self.client = client
 
-    def get_output(self, source_text: str, model_name: str = "gpt-4turbo", overwrite: bool = False) -> str:
+    def get_output(self, source_text: str, model_name: str = "gpt-3.5-turbo", overwrite: bool = False) -> str:
         """
         Get the output for the task, either by generating it or fetching from Weaviate.
         :param source_text: The source text based on which the task is created.
@@ -88,7 +90,7 @@ class RAGTask:
         return generated_text
 
 
-def call_llm(prompt: str, model_name: str = "gpt-4turbo") -> str:
+def call_llm(prompt: str, model_name: str = "gpt-3.5-turbo") -> str:
     """
     Call the language model with a specific prompt and model name.
     :param prompt: The prompt to be used.
@@ -104,7 +106,7 @@ def call_llm(prompt: str, model_name: str = "gpt-4turbo") -> str:
         raise ValueError(f"No function exists to handle for model {model_name}")
 
 
-def call_chatgpt(prompt: str, model_name: str = "gpt-4turbo") -> str:
+def call_chatgpt(prompt: str, model_name: str = "gpt-3.5-turbo") -> str:
     """
     Call the ChatGPT model with a specific prompt.
     :param prompt: The prompt to be used.
@@ -112,12 +114,12 @@ def call_chatgpt(prompt: str, model_name: str = "gpt-4turbo") -> str:
     :return:
     """
 
-    openai.api_type = "azure"
-    openai.api_version = "2024-02-15-preview"
-    openai.api_base = "https://aipmuuat.openai.azure.com/"  # Your Azure OpenAI resource's endpoint value.
-    openai.api_key = "798abe9b0e9a4e8db46003dc759cbfce"
+    #openai.api_type = "azure"
+    #openai.api_version = "2024-02-15-preview"
+    #openai.api_base = "https://aipmuuat.openai.azure.com/"  # Your Azure OpenAI resource's endpoint value.
+    openai.api_key = "sk-proj-87pZy6pvYjw3T6PPBAXkT3BlbkFJnyTSnOYPMacMwCp5Pgm2"
 
-    completion = openai.ChatCompletion.create(
+    completion = client.chat.completions.create(
         engine=model_name,
         messages=[
             prompts.SYSTEM_PROMPTS["Default"],
