@@ -4,3 +4,4 @@ openai
 langchain_community
 langchain_openai
 chat
+pytesseract
