@@ -66,7 +66,7 @@ images = ['6MarkQ']
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 if openai_api_key is None:
-     aise ValueError("OpenAI API key not found in environment variables")
+   aise ValueError("OpenAI API key not found in environment variables")
 
 #Initialize the OpenAI client
 openai.api_key = openai_api_key
