@@ -16,5 +16,4 @@ rag
 Pillow
 Callable
 PyPDF2
-docxlatex
 
