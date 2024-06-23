@@ -1,7 +1,5 @@
 langchain
-openai
 streamlit
-langchain
-langchain_openai
-chat
+openai
+
 
