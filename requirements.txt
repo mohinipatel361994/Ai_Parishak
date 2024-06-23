@@ -20,4 +20,3 @@ PyPDF2
 python-dotenv
 docxlatex
 docx2txt
-langchain.embeddings
