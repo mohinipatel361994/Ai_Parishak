@@ -4,4 +4,4 @@ streamlit
 langchain
 langchain_openai
 chat
-pytesseract
+
