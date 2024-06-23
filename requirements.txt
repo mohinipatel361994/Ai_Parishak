@@ -4,3 +4,4 @@ openai
 pytesseract
 functions
 pdfminer.six
+docx
