@@ -21,4 +21,5 @@ python-dotenv
 docxlatex
 docx2txt
 pdf2image
-
+transformers
+torch
