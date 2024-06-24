@@ -61,15 +61,9 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_BASE"] = ""
 #os.environ["OPENAI_API_KEY"] = "sk-proj-hlZjB02IHIvljiuJjQiMT3BlbkFJXB0gpja0YIloY1axNtGM"
 
-openai.api_key = os.environ["OPENAI_API_KEY"]
-# Get the OpenAI API key from environment variables
-#openai_api_key = os.getenv("OPENAI_API_KEY")
+#openai.api_key = os.environ["OPENAI_API_KEY"]
 
-#if openai_api_key is None:
-    #raise ValueError("OpenAI API key not found in environment variables")
-
-# Initialize the OpenAI client
-#openai.api_key = openai_api_key
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 
 def get_base64(bin_file):
