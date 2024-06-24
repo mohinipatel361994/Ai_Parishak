@@ -6,7 +6,7 @@ from openai import OpenAI
 import streamlit as st
 import os
 import pandas as pd
-from rag import *
+#from rag import *
 from PIL import Image
 from chat import load_chain
 import numpy as np
