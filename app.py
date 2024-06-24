@@ -62,7 +62,7 @@ os.environ["OPENAI_API_KEY"] = "API_KEY"
 
 #openai.api_key = os.environ["API_KEY"]
 
-#openai.api_key = st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["API_KEY"]
 
 
 def get_base64(bin_file):
