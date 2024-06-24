@@ -58,9 +58,9 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-#os.environ["OPENAI_API_KEY"] = "sk-proj-hlZjB02IHIvljiuJjQiMT3BlbkFJXB0gpja0YIloY1axNtGM"
+os.environ["OPENAI_API_KEY"] = API_KEY
 
-openai.api_key = os.environ["API_KEY"]
+#openai.api_key = os.environ["API_KEY"]
 
 #openai.api_key = st.secrets["OPENAI_API_KEY"]
 
