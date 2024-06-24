@@ -14,7 +14,7 @@ logging.basicConfig(
     format='[%(asctime)s] %(levelname)s in %(module)s: %(message)s'
 )
 logger = logging.getLogger(__name__)
-os.environ["OPENAI_APIKEY"] = "sk-proj-r7Xb0kAwpOu60akPywXkT3BlbkFJOklpm0bfRFOSZdyUEYxr"
+os.environ["OPENAI_APIKEY"] = "API_KEY"
 
 
 GPT_MODELS = ["gpt-3.5-turbo", "gpt-3.5-turbo-16k", "gpt-4", "gpt-4-32k"]
