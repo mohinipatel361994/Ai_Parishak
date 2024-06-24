@@ -60,7 +60,7 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_BASE"] = ""
 #os.environ["OPENAI_API_KEY"] = "OPENAI_API_KEY"
 #OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-api_key = os.getenv('api_key')
+api_key = os.getenv('API_KEY')
 
 if api_key is None:
     raise ValueError("No API key found. Please set the OPENAI_API_KEY environment variable.")
