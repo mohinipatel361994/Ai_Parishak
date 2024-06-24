@@ -58,7 +58,7 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-os.environ["OPENAI_API_KEY"] = "OPENAI_API_KEY"
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"] 
 #OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
 
