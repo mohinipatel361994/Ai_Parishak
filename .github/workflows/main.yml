@@ -24,6 +24,7 @@ jobs:
           #pip install langchain
           #pip install langchain_community
           pip install -r requirements.txt
+          pip install weaviate
 
       - name: Echo API_KEY
         env:
