@@ -58,11 +58,11 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
-os.environ["OPENAI_API_KEY"] = "API_KEY"
+os.environ["API_KEY"] = "API_KEY"
 
 #openai.api_key = os.environ["API_KEY"]
 
-openai.api_key = st.secrets["API_KEY"]
+#openai.api_key = st.secrets["API_KEY"]
 
 
 def get_base64(bin_file):
