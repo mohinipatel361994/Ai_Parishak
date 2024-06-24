@@ -7,7 +7,6 @@ import streamlit as st
 import os
 import pandas as pd
 from rag import *
-
 from PIL import Image
 from chat import load_chain
 import numpy as np
@@ -31,7 +30,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-client = OpenAI()
+#client = OpenAI()
 
 st.set_page_config(layout='wide')
 
