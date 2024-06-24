@@ -12,7 +12,7 @@ requests
 logging
 constants
 prompts
-
+rag
 Pillow
 langchain_community
 langchain_openai
