@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-#client = OpenAI()
+client = OpenAI()
 
 st.set_page_config(layout='wide')
 
@@ -63,7 +63,7 @@ images = ['6MarkQ']
 
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
-openai.api_key = st.secrets["OPENAI_API_KEY"]
+#openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 
 def get_base64(bin_file):
