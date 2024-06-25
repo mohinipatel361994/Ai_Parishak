@@ -739,7 +739,7 @@ if st.session_state.teach=='Teachers':
                     #     Read the content of the file
                         st.session_state.mcq_chain = ConversationChain( llm=ChatOpenAI(
                         model="gpt-3.5-turbo",
-                        temperature=0.7
+                        temperature=0.7,
                         api_key=openai_api_key2
                         ))
                         outputs = chat.mcq_response(text)
