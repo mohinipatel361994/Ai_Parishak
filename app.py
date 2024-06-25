@@ -819,7 +819,8 @@ if st.session_state.teach=='Teachers':
                     if st.session_state.text and st.session_state.mode_of_questions!='Select Option' :
                             st.session_state.llm = ConversationChain( llm=ChatOpenAI(
                             model="gpt-3.5-turbo",
-                            temperature=0.7
+                            temperature=0.7,
+                            api_key=openai_api_key2            
                             )) 
                             formatted_output = st.session_state.llm.predict(input = ai_prompt.format(st.session_state.no_of_questions,
                                                                             st.session_state.mode_of_questions,
