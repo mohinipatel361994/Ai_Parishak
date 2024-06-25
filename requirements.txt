@@ -22,4 +22,4 @@ docx2txt
 transformers
 torch
 chromadb
-langchain.embeddings
+
