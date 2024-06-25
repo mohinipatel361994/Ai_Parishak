@@ -63,11 +63,10 @@ images = ['6MarkQ']
 #secret_value = environ.get('OPENAI_API_KEY')
 
 secret_key_environment_variable_name = 'API_ID'
-        secret_key_input = str(environ.get(secret_key_environment_variable_name)).upper()
-        if secret_key_input is None or len(secret_key_input) == 0:
-            raise ArgumentError(argument=None, message=f"Missing environment variable with key {secret_key_environment_variable_name}. It will be the Key to create the secret.")
-
-        secret_value = environ.get('OPENAI_API_KEY')
+secret_key_input = str(environ.get(secret_key_environment_variable_name)).upper()
+#if secret_key_input is None or len(secret_key_input) == 0:
+#raise ArgumentError(argument=None, message=f"Missing environment variable with key {secret_key_environment_variable_name}. It will be the Key to create the secret.")
+secret_value = environ.get('OPENAI_API_KEY')
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
