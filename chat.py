@@ -10,7 +10,7 @@ from openai import OpenAI
 from langchain.chains import VectorDBQA
 from langchain.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 from langchain.chains import (
     ConversationalRetrievalChain,ConversationChain
 )
