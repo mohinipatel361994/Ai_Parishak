@@ -55,8 +55,6 @@ add_selectbox = st.sidebar.selectbox(
 load_dotenv()
 
 images = ['6MarkQ']
-from os import environ
-
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
