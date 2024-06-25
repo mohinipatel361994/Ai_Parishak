@@ -31,7 +31,10 @@ from pytesseract import Output, TesseractError
 #     return text, len(all_text)
 
 def images_to_txt(path, language):
-    images = pdf2image.convert_from_bytes(path,poppler_path= r'C:\poppler-24.02.0\Library\bin')
+    
+    poppler_path = os.getenv('POPPLER_PATH')
+    images = convert_from_bytes(path, poppler_path=poppler_path)
+    images = pdf2image.convert_from_bytes(path,poppler_path= poppler_path)
     all_text = []
     for v,i in enumerate(images):
         pil_im = i
