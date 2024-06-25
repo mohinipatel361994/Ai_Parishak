@@ -1,5 +1,5 @@
 import json
-from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
 import chat
 import openai
 from openai import OpenAI
