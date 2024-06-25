@@ -23,5 +23,4 @@ torch
 chromadb
 pdf2image
 InstructorEmbedding
-langchain-huggingface
-sentence-transformers
+sentence-transformers==2.2.2
