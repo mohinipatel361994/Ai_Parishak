@@ -56,11 +56,12 @@ load_dotenv()
 
 images = ['6MarkQ']
 from os import environ
-#os.environ["OPENAI_API_TYPE"] = ""
-#os.environ["OPENAI_API_VERSION"] = ""
-#os.environ["OPENAI_API_BASE"] = ""
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"] 
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+# Use the API key
+openai = OpenAI(api_key=openai_api_key)
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
