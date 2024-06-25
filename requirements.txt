@@ -24,4 +24,4 @@ chromadb
 pdf2image
 InstructorEmbedding
 langchain-huggingface
-sentence-transformers==2.2.2
+sentence-transformers
