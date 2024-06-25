@@ -5,6 +5,7 @@ import openai
 from openai import OpenAI
 import streamlit as st
 import os
+from os import environ
 import pandas as pd
 #from rag import *
 from PIL import Image
