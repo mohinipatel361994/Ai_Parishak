@@ -59,7 +59,7 @@ images = ['6MarkQ']
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Use the API key
-openai = OpenAI(api_key=openai_api_key)
+
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
