@@ -60,12 +60,8 @@ images = ['6MarkQ']
 #os.environ["OPENAI_API_VERSION"] = ""
 #os.environ["OPENAI_API_BASE"] = ""
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"] 
-#OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-if 'OPENAI_API_KEY' in st.secrets:
-    st.success('API key already provided!', icon='✅')
-    replicate_api = st.secrets['OPENAI_API_KEY']
-else:
-    replicate_api = st.text_input('Enter Replicate API token:', type='password')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
        
 
 def get_base64(bin_file):
