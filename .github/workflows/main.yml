@@ -1,19 +1,31 @@
-name: python
+name: Deploy Application
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  API_KEY:
-    environment: API_KEY
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-        
-    - name: Test env vars for python
-      run: python -c 'import os;print(os.environ)'
-      env:
-        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }} 
-        
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Upgrade pip
+        run: python -m pip install --upgrade pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run custom script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python app.py  # Replace with your deployment command or script
