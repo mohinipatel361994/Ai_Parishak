@@ -194,7 +194,8 @@ def load_chain(docsearch):
         llm=ChatOpenAI(
             #openai_api_key = values["openai_api_key"],
             model = "gpt-3.5-turbo",
-            temperature=0.7
+            temperature=0.7,
+            api_key=openai_api_key2
         ),
         chain_type="stuff",
         retriever=docsearch.as_retriever(),
