@@ -1,4 +1,4 @@
-name: Deploy Application
+name: Deploy
 
 on:
   push:
@@ -18,14 +18,13 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Upgrade pip
-        run: python -m pip install --upgrade pip
-
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
 
-      - name: Run custom script
+      - name: Run application
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
-          python app.py  # Replace with your deployment command or script
+          python app.py
