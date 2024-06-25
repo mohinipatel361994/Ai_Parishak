@@ -5,7 +5,8 @@ import sys
 from langchain.vectorstores import Chroma
 from langchain_openai import ChatOpenAI
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.llms import OpenAI
+#from langchain.llms import OpenAI
+from langchain_community.llms import OpenAI
 from openai import OpenAI
 from langchain.chains import VectorDBQA
 from langchain.document_loaders import DirectoryLoader
