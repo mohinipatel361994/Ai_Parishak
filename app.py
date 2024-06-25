@@ -61,7 +61,7 @@ from os import environ
 #os.environ["OPENAI_API_BASE"] = ""
 OPENAI_API_KEY = os.environ["OPENAI_API_KEY"] 
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-OPENAI_API_KEY = environ.get["OPENAI_API_KEY"] 
+OPENAI_API_KEY = get.environ["OPENAI_API_KEY"] 
 
 def get_base64(bin_file):
     with open(bin_file, 'rb') as f:
