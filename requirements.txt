@@ -5,7 +5,6 @@ pytesseract
 functions
 pdfminer.six
 python-docx
-pdf2image
 nltk
 protobuf
 requests
@@ -22,5 +21,6 @@ docx2txt
 transformers
 torch
 chromadb
+pdf2image
 
 
