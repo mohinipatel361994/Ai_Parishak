@@ -22,5 +22,5 @@ docx2txt
 transformers
 torch
 chromadb
-poppler-utils==21.12.0
+
 
