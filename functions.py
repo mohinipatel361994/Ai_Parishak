@@ -6,7 +6,7 @@ from pdfminer.layout import LAParams
 from pdfminer.pdfpage import PDFPage
 from docx import Document 
 import pandas as pd
-
+import os
 from io import StringIO
 import base64
 #------- OCR ------------
