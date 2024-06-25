@@ -34,7 +34,6 @@ from pytesseract import Output, TesseractError
 def images_to_txt(path, language):
     
     poppler_path = os.getenv('POPPLER_PATH')
-    images = convert_from_bytes(path, poppler_path=poppler_path)
     images = pdf2image.convert_from_bytes(path,poppler_path= poppler_path)
     all_text = []
     for v,i in enumerate(images):
