@@ -42,7 +42,7 @@ import tempfile
 import json
 import re
 
-
+openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 languages = {
     'English': 'eng',
     'Hindi': 'hi'
