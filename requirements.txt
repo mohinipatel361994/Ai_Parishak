@@ -22,5 +22,5 @@ transformers
 torch
 chromadb
 pdf2image
-
+InstructorEmbedding
 
