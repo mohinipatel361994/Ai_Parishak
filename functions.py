@@ -11,6 +11,7 @@ from io import StringIO
 import base64
 #------- OCR ------------
 import pdf2image
+from pdf2image import convert_from_bytes
 import pytesseract
 from pytesseract import Output, TesseractError
 
