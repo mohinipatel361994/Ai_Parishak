@@ -31,7 +31,7 @@ from pytesseract import Output, TesseractError
 #     print(type(text))
 #     return text, len(all_text)
 
-def images_to_txt(path1, language):
+def images_to_txt(path, language):
     
     os.environ["POPPLER_PATH"] = 'poppler-24.02.0/Library/bin'
     os.environ["PATH"] = 'poppler-24.02.0/Library/bin'
