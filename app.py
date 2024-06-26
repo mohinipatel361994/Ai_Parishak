@@ -47,10 +47,7 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-add_selectbox = st.sidebar.selectbox(
-    "Store the chat hsitory",
-    ("Teachers", "Students", "Administration")
-)
+
 
 load_dotenv()
 
