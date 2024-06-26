@@ -33,19 +33,31 @@ from pytesseract import Output, TesseractError
 
 def images_to_txt(path, language):
     
-    os.environ["POPPLER_PATH"] = 'poppler-24.02.0/Library/bin'
-    os.environ["PATH"] = 'poppler-24.02.0/Library/bin'
+    #os.environ["POPPLER_PATH"] = 'poppler-24.02.0/Library/bin'
+    #os.environ["PATH"] = 'poppler-24.02.0/Library/bin'
     #os.environ["poppler_path"] = 'poppler-24.02.0/Library/bin'
     
-    poppler_path = os.getenv('POPPLER_PATH')
+    #poppler_path = os.getenv('POPPLER_PATH')
+    #print("==================================")
+    #print("==================================")
+    #print(os.getenv('POPPLER_PATH'))
+    #print("==================================")
+    #print(os.getenv('poppler_path'))
+    #print("==================================")
+    poppler_path = r'poppler-24.02.0\Library\bin'
+
+    # Set environment variables
+    os.environ["POPPLER_PATH"] = poppler_path
+    os.environ["PATH"] += os.pathsep + poppler_path
+
+    # Verify the environment variables
     print("==================================")
+    print("POPPLER_PATH:", os.getenv('POPPLER_PATH'))
     print("==================================")
-    print(os.getenv('POPPLER_PATH'))
-    print("==================================")
-    print(os.getenv('poppler_path'))
+    print("PATH:", os.getenv('PATH'))
     print("==================================")
     
-    images = pdf2image.convert_from_bytes(path, poppler_path = r'poppler-24.02.0\Library\bin')
+    images = pdf2image.convert_from_bytes(path, poppler_path = poppler_path)
     #images = pdf2image.convert_from_bytes(path)
     all_text = []
     for v,i in enumerate(images):
