@@ -1,0 +1,33 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x  # Replace with your desired Python version
+
+    - name: Download and set up Poppler
+      run: |
+        curl -LO https://github.com/oschwartz10612/poppler-windows/releases/download/v21.03.0-0/Release-21.03.0-0.zip
+        tar -xf Release-21.03.0-0.zip
+        echo "poppler path:" $(pwd)/Release-21.03.0-0/poppler-21.03.0/Library/bin
+        echo $(pwd)/Release-21.03.0-0/poppler-21.03.0/Library/bin >> $GITHUB_PATH
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        # Your test commands here
+        python app.py
