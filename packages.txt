@@ -1,1 +1,1 @@
-pip3 install  poppler-utils
+pip install poppler-utils
