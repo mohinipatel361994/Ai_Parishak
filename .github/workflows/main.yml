@@ -8,7 +8,7 @@ jobs:
 
     env:
       # Setting default Poppler path (will be updated after extraction)
-      POPPLER_PATH: ./poppler/poppler-0.68.0/bin
+      POPPLER_PATH: ${{ github.workspace }}/poppler/Release-21.03.0-0/poppler-21.03.0/Library/bin
 
     steps:
     - name: Checkout code
@@ -27,12 +27,18 @@ jobs:
         # Download Poppler binaries
         curl -LO https://github.com/oschwartz10612/poppler-windows/releases/download/v21.03.0-0/Release-21.03.0-0.zip
 
+        # Verify the download
+        ls -l
+
         # Unzip the downloaded file
+        sudo apt-get install -y unzip
         unzip Release-21.03.0-0.zip -d poppler
 
-        # Verify the Poppler path
-        echo "Poppler path set to: ${{ github.workspace }}/poppler/Release-21.03.0-0/poppler-21.03.0/Library/bin"
-        export POPPLER_PATH="${{ github.workspace }}/poppler/Release-21.03.0-0/poppler-21.03.0/Library/bin"
+        # Verify the extraction
+        ls -l poppler
+
+    - name: Set Poppler Path
+      run: echo "POPPLER_PATH=${{ github.workspace }}/poppler/Release-21.03.0-0/poppler-21.03.0/Library/bin" >> $GITHUB_ENV
 
     - name: Install dependencies
       run: |
@@ -40,8 +46,6 @@ jobs:
         #pip install -r requirements.txt
 
     - name: Run main Python script
-      env:
-        POPPLER_PATH: ${{ env.POPPLER_PATH}}
       run: |
         echo "Using Poppler at: $POPPLER_PATH"
         python app.py
