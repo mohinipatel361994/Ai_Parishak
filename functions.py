@@ -38,7 +38,10 @@ def images_to_txt(path, language):
     from dotenv import load_dotenv, find_dotenv
     _ = load_dotenv(find_dotenv()) # read local .env file
 
-    #os.environ["POPPLER_PATH"] = 'poppler-24.02.0/Library/bin'
+    # Set environment variables
+    os.environ["POPPLER_PATH"] = 'poppler-24.02.0/Library/bin'
+    os.environ["PATH"] += os.pathsep + 'poppler-24.02.0/Library/bin'
+    #os.environ["POPPLER_PATH"] = poppler_path
     #os.environ["PATH"] = 'poppler-24.02.0/Library/bin'
     #os.environ["poppler_path"] = 'poppler-24.02.0/Library/bin'
     
@@ -49,11 +52,9 @@ def images_to_txt(path, language):
     #print("==================================")
     #print(os.getenv('poppler_path'))
     #print("==================================")
-    poppler_path = r'poppler-24.02.0/Library/bin'
+    #poppler_path = r'poppler-24.02.0/Library/bin'
 
-    # Set environment variables
-    os.environ["POPPLER_PATH"] = poppler_path
-    os.environ["PATH"] += os.pathsep + poppler_path
+    
 
     # Verify the environment variables
     print("==================================")
@@ -62,8 +63,8 @@ def images_to_txt(path, language):
     print("PATH:", os.getenv('PATH'))
     print("==================================")
     
-    images = pdf2image.convert_from_bytes(path, poppler_path = poppler_path)
-    #images = pdf2image.convert_from_bytes(path)
+    #images = pdf2image.convert_from_bytes(path, poppler_path = poppler_path)
+    images = pdf2image.convert_from_bytes(path)
     all_text = []
     for v,i in enumerate(images):
         pil_im = i
