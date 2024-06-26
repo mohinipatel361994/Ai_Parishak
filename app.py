@@ -58,8 +58,6 @@ images = ['6MarkQ']
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
-print("==========================================")
-print(len(openai_api_key2))
 # Use the API key
 TEMP_MD_FILE = r"question.pdf"
 TEMP_PDF_FILE = "__temp.pdf"
