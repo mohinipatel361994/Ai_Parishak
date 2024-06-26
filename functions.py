@@ -49,7 +49,7 @@ def images_to_txt(path, language):
     #print("==================================")
     #print(os.getenv('poppler_path'))
     #print("==================================")
-    poppler_path = r'poppler-24.02.0\Library\bin'
+    poppler_path = r'poppler-24.02.0/Library/bin'
 
     # Set environment variables
     os.environ["POPPLER_PATH"] = poppler_path
