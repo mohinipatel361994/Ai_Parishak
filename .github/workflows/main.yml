@@ -17,10 +17,15 @@ jobs:
 
     - name: Download and set up Poppler
       run: |
-        curl -LO https://github.com/oschwartz10612/poppler-windows/releases/download/v21.03.0-0/Release-21.03.0-0.zip
-        tar -xf Release-21.03.0-0.zip
-        echo "poppler path:" $(pwd)/Release-21.03.0-0/poppler-21.03.0/Library/bin
-        echo $(pwd)/Release-21.03.0-0/poppler-21.03.0/Library/bin >> $GITHUB_PATH
+        # Download Poppler
+        curl -LO https://github.com/oschwartz10612/poppler-windows/releases/download/v23.01.0-0/Release-23.01.0-0.zip
+        
+        # Unzip the downloaded file
+        powershell -Command "Expand-Archive -Path 'Release-23.01.0-0.zip' -DestinationPath '.'"
+        
+        # Set Poppler path environment variable
+        echo "poppler path:" $(pwd)/Release-23.01.0-0/poppler-23.01.0/Library/bin
+        echo $(pwd)/Release-23.01.0-0/poppler-23.01.0/Library/bin >> $GITHUB_PATH
 
     - name: Install dependencies
       run: |
@@ -30,4 +35,4 @@ jobs:
     - name: Run tests
       run: |
         # Your test commands here
-        python app.py
+        python your_script.py
