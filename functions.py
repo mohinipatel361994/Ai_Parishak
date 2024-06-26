@@ -42,7 +42,7 @@ def images_to_txt(path, language):
     print("==================================")
     
     images = pdf2image.convert_from_bytes(path)
-    #images = pdf2image.convert_from_bytes(path)
+    #images = pdf2image.convert_from_bytes(path, poppler_path=r'poppler-24.02.0/Library/bin')
     all_text = []
     for v,i in enumerate(images):
         pil_im = i
