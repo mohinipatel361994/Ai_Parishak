@@ -805,7 +805,7 @@ if st.session_state.teach=='Teachers':
 
                     lowercase_dict = {key.lower(): value for key, value in existing_dictionary.items()}
                     st.session_state.text=correct_bhashni_translations(txt,lowercase_dict)
-                    st.write(st.session_state.text)
+                    #st.write(st.session_state.text)
 
                     col1, col2 = st.columns(2)
                     with col1:
@@ -909,7 +909,7 @@ if st.session_state.teach=='Students':
 
                     lowercase_dict = {key.lower(): value for key, value in existing_dictionary.items()}
                     st.session_state.text=correct_bhashni_translations(txt,lowercase_dict)
-                    st.write(st.session_state.text)
+                    #st.write(st.session_state.text)
 
                     col1, col2 = st.columns(2)
                     with col1:
