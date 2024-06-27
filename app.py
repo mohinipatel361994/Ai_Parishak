@@ -851,7 +851,7 @@ if st.session_state.teach=='Teachers':
                     st.session_state.no_of_questions = st.number_input('No. of  Questions to generate*',key="ai_questions_no_a",step=1,max_value=30)
                 with col2:
                     st.session_state.type_of_questions =  st.selectbox('Choose Question Type*', ['Select Option','Short Questions','MCQ','Fill in the Blanks','True and False'],index=0,key="ai_questions_no_p")
-                    st.session_state.classq =  st.selectbox('Choose Class*', ['Select Option','1','2','3','4','5','6','7','8','9','10','11','12'],index=0,key="ai_questions_no_p1")
+                    #st.session_state.classq =  st.selectbox('Choose Class*', ['Select Option','1','2','3','4','5','6','7','8','9','10','11','12'],index=0,key="ai_questions_no_p1")
                     st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Select Option','Only Questions', 'Questions with Answers'],index=0,key="quesanswz")
                 if  st.session_state.topic_name and st.session_state.mode_of_questions!='Select Option' :
                     st.session_state.llm = ConversationChain( llm=ChatOpenAI(
@@ -864,7 +864,7 @@ if st.session_state.teach=='Teachers':
                                                                                                 st.session_state.no_of_questions,
                                                                                                     st.session_state.mode_of_questions,
                                                                                                     st.session_state.type_of_questions,
-                                                                                                    st.session_state.classq,
+                                                                                                    
                                                                                                   st.session_state.complexity))
                     
                     # formatted_output = formatted_output.replace("^", r"^{")  # Replace ^ with ^
