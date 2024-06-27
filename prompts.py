@@ -101,8 +101,7 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
     2. number of questions - {}
     3. mode of questions - {}
     4. type of questions - {}
-    5. class - {}
-    6. Level of questions - {}
+    5. Level of questions - {}
     
     Response is to be generated in both english and Hindi,first generate in english then in Hindi
     and if you are generating Answers also, Answer it in a new line and Generate questions according to Madhya Pradesh School Education Board
