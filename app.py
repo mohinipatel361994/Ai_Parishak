@@ -625,7 +625,7 @@ if st.session_state.teach=='Teachers':
                                 st.session_state.no_of_questions = st.number_input('No. of  Questions to generate*',key="ai_questions",step=1,max_value=30)
                                 st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Only Questions', 'Questions with Answers'],index=0,key="quesansw")
                             with col2:
-                                st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name*',placeholder="AI Chapter/Topic Name")
+                                #st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name*',placeholder="AI Chapter/Topic Name")
                                 st.session_state.type_of_questions =  st.selectbox('Choose Question Type*', ['Short Questions', 'Long Questions','MCQ','Fill in the Blanks','True and False'],index=0)
                                 st.session_state.language =  st.selectbox('Choose Response Language Mode*', ['English'],index=0,key="lang")
                                 #docsearch = chat.create_doc_embeddings(documents)
