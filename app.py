@@ -864,7 +864,7 @@ if st.session_state.teach=='Teachers':
                                                                                                 st.session_state.no_of_questions,
                                                                                                     st.session_state.mode_of_questions,
                                                                                                     st.session_state.type_of_questions,
-                                                                                                    st.session_state.classq,
+                                                                                                    
                                                                                                   st.session_state.complexity))
                     
                     # formatted_output = formatted_output.replace("^", r"^{")  # Replace ^ with ^
