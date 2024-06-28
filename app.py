@@ -656,17 +656,17 @@ if st.session_state.teach=='Teachers':
                     print('get the input text')
 
                     # Initialize chat history
-                    if "messages" not in st.session_state:
-                        st.session_state.messages = []
+                    #if "messages" not in st.session_state:
+                    #    st.session_state.messages = []
 
                     # Display chat messages from history on app rerun
-                    for message in st.session_state.messages:
-                        with st.chat_message(message["role"]):
-                            if message['content'] != user_input:
-                                st.markdown(message["content"])
+                    #for message in st.session_state.messages:
+                    #    with st.chat_message(message["role"]):
+                    #        if message['content'] != user_input:
+                    #            st.markdown(message["content"])
 
-                    st.session_state.llm = load_chain(docsearch)
-                    print('chain loaded')
+                    #st.session_state.llm = load_chain(docsearch)
+                    #print('chain loaded')
                     memory = ConversationBufferMemory(return_messages=True)
                             
                     st.session_state.language_chain = ConversationChain(llm=ChatOpenAI(model_name="gpt-3.5-turbo",temperature=0.7,api_key=openai_api_key2),memory=memory) 
@@ -1195,17 +1195,17 @@ if st.session_state.teach=='Students':
                     print('get the input text')
 
                     # Initialize chat history
-                    if "messages" not in st.session_state:
-                        st.session_state.messages = []
+                    #if "messages" not in st.session_state:
+                    #    st.session_state.messages = []
 
                     # Display chat messages from history on app rerun
-                    for message in st.session_state.messages:
-                        with st.chat_message(message["role"]):
-                            if message['content'] != user_input:
-                                st.markdown(message["content"])
+                    #for message in st.session_state.messages:
+                    #    with st.chat_message(message["role"]):
+                    #        if message['content'] != user_input:
+                    #            st.markdown(message["content"])
                     
-                    st.session_state.llm = load_chain(docsearch)
-                    print('chain loaded')
+                    #st.session_state.llm = load_chain(docsearch)
+                    #print('chain loaded')
                     memory = ConversationBufferMemory(
                     return_messages=True,
                     )
