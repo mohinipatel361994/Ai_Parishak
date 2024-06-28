@@ -225,7 +225,7 @@ def answer(user_input: str, persist_directory: str = constants.PERSIST_DIR) -> s
     print(master_prompt.format(
                                st.session_state.mode_of_questions,
                                st.session_state.complexity,
-                               st.session_state.topic_name,
+                               #st.session_state.topic_name,
                                st.session_state.no_of_questions,
                                st.session_state.type_of_questions,
                                st.session_state.mode_of_questions,
@@ -236,7 +236,7 @@ def answer(user_input: str, persist_directory: str = constants.PERSIST_DIR) -> s
                                                                     st.session_state.mode_of_questions,
                                                                     # st.session_state.filename,
                                                                     st.session_state.complexity,
-                                                                    st.session_state.topic_name, 
+                                                                    #st.session_state.topic_name, 
                                                                     st.session_state.no_of_questions,
                                                                     st.session_state.type_of_questions,
                                                                     st.session_state.mode_of_questions,
