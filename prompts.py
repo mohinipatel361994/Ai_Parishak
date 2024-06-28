@@ -152,9 +152,8 @@ if type of questions is Long Questions then generate questions according to 3,4,
 You have been provided the Context/Subject/Chapter/Book 
 Based on the context, generate {} considering following constraints,
     1. Level of questions - {}
-    2. Topic name - {} 
-    3. number of questions  - {}
-    4. type of questions - {}
+    2. number of questions  - {}
+    3. type of questions - {}
 If topic name is not provided then based on context generate {} from books/chapters/Subject 
 
 if Level of questions is Yes then categorise the Response as Easy,Medium and Complex 
