@@ -1204,8 +1204,8 @@ if st.session_state.teach=='Students':
                             if message['content'] != user_input:
                                 st.markdown(message["content"])
                     
-                    #st.session_state.llm = load_chain(docsearch)
-                    #print('chain loaded')
+                    st.session_state.llm = load_chain(docsearch)
+                    print('chain loaded')
                     memory = ConversationBufferMemory(
                     return_messag=True,
                     )
