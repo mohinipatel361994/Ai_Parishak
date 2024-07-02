@@ -1195,11 +1195,11 @@ if st.session_state.teach=='Students':
                     print('get the input text')
 
                     # Initialize chat history
-                    if "messages" not in st.session_state:
-                        st.session_state.messages = []
+                    if "messag" not in st.session_state:
+                        st.session_state.messag = []
 
                     # Display chat messages from history on app rerun
-                    for message in st.session_state.messages:
+                    for message in st.session_state.messag:
                         with st.chat_message(message["role"]):
                             if message['content'] != user_input:
                                 st.markdown(message["content"])
@@ -1207,7 +1207,7 @@ if st.session_state.teach=='Students':
                     #st.session_state.llm = load_chain(docsearch)
                     #print('chain loaded')
                     memory = ConversationBufferMemory(
-                    return_messages=True,
+                    return_messag=True,
                     )
                     st.session_state.language_chain = ConversationChain( llm=ChatOpenAI(
                         model="gpt-3.5-turbo",
@@ -1218,7 +1218,7 @@ if st.session_state.teach=='Students':
                     if user_input:
                         english_output = chat.answerq(user_input,st.session_state.text)
                         print('get the output')
-                        st.session_state.messages.append({"role": "user", "content": user_input})
+                        st.session_state.messag.append({"role": "user", "content": user_input})
                         # Display user message in chat message container
                         with st.chat_message("user"):
                             st.markdown(user_input)  
@@ -1244,7 +1244,7 @@ if st.session_state.teach=='Students':
                                                 )
 
 
-                        st.session_state.messages.append({"role": "assistant", "content": english_output})
+                        st.session_state.messag.append({"role": "assistant", "content": english_output})
     if choose=="Terminologies and Keyterms":
         st.write('Note: File name should contain subject and class like maths_class10.pdf/.docx')
         files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
