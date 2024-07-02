@@ -116,9 +116,7 @@ mcq_test_prompt = """
         Based on the context generate terminologies and key terms
         first generate terminologies then generate key terms
         generate the response in both english and Hindi, first generate in english then in Hindi
-        Remember to keep all the information as it is. Response-{}    
-        and if you are generating Answers also, Answer it in a new line and Generate questions according to Madhya Pradesh School Education Board
-        generate the all types of question and answer,and please insure the question and answer based on topic or text.
+        Remember to keep all the information as it is. Response-{}     
 """
 
 key_term_prompt = """
@@ -131,8 +129,7 @@ key_term_prompt = """
 learn_outcome_prompt = """
         Based on the context generate learning outcomes
         generate the response in both english and Hindi, first generate in english then in Hindi
-        Remember to keep all the information as it is. Response-{} 
-             
+        Remember to keep all the information as it is. Response-{}           
     """
 
 student_prompt = """ Based on query {} generate response from context {}"""
