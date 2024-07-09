@@ -12,7 +12,7 @@ import logging
 #from langchain.chat_models import AzureChatOpenAI
 from dotenv import load_dotenv
 from openai import OpenAI
-client = OpenAI()
+
 #from langchain.llms import AzureOpenAI
 
 
