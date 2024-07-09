@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-#client = OpenAI()
+client = OpenAI(api_key=openai_api_key2)
 
 st.set_page_config(layout='wide')
 
@@ -396,7 +396,7 @@ if st.session_state.teach=='Teachers':
     st.session_state.quesai = st.title("Generate Question and Answer")
     if st.session_state.quesai:
         #tab1, tab2,tab3= st.tabs(["1. Upload Document", "2. Text Analyzer","3. Skill based Questions"])
-            choose=st.radio("Select Options",("Pre Uploaded","Text Analyzer","Skill Based Questions","Terminologies and Keyterms","Learning Outcomes"),horizontal=True)
+            choose=st.radio("Select Options",("Pre Uploaded","Text Analyzer","Image Analyzer","Skill Based Questions","Terminologies and Keyterms","Learning Outcomes"),horizontal=True)
             if choose=="Upload Documents":
                 st.write('Note: File name should contain subject and class like maths_class10.pdf/.docx')
                 files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
@@ -838,10 +838,87 @@ if st.session_state.teach=='Teachers':
 
             else:
                     st.write("")
+            if choose=="Image Analyzer":
+                #openai.api_type = ""
+                #openai.api_version = ""
+                #openai.api_base = ""  
+                #openai.api_key 
+                openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 
-            
+                def load_image(img):
+                    im = Image.open(img)
+                    im = im.resize((400, 300))
+                    image = np.array(im)
+                    return image
+
+                def to_base64(uploaded_file):
+                    if uploaded_file is not None:
+                       file_buffer = uploaded_file.read()
+                       b64 = base64.b64encode(file_buffer).decode()
+                       return f"data:image/png;base64,{b64}"
+                    return None
+
+                def generate_questions(image_base64):
+                    response = client.chat.completions.create(
+                      model="gpt-3.5-turbo",
+                      messages=[
+                          {
+                            "role": "user",
+                             "content": [
+                                 {"type": "text", "text": st.session_state.text_prompt},
+                                 {
+                                       "type": "image_url",
+                                       "image_url": {
+                                        "url": image_base64,
+                                        },
+                                 },
+                              ],
+                           }
+                    ],
+                    max_tokens=2000,
+                )
+                    return response.choices[0].message.content
+
+                st.write("Upload Image to Generate Questions")
+                st.session_state.image = st.file_uploader(label=" ", accept_multiple_files=False, type=["jpg", "jpeg", "png"])
+
+                if st.session_state.image:
+                   col1, col2 = st.columns(2)
+                   with col1:
+                        st.session_state.complexity = st.selectbox('Complexity Mode Required?*', ['Easy', 'Difficult'], index=0, key="mode1image")
+                        st.session_state.no_of_questions = st.number_input('No. of Questions to generate*', key="ai_questions_no_a_image", step=1, max_value=30)
+                        st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Select Option', 'Only Questions', 'Questions with Answers'], index=0, key="quesanswz_image")
+                   with col2:
+                        st.session_state.type_of_questions = st.selectbox('Choose Question Type*', ['Select Option', 'Short Questions', 'MCQ', 'Fill in the Blanks', 'True and False'], index=0, key="ai_questions_no_p_image")
+                        st.session_state.classq = st.selectbox('Choose Class*', ['Select Option', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'], index=0, key="ai_questions_no_p1_image")
+                        st.session_state.cont = st.text_input("Any other context (Optional)", key="eng_image")
+
+                   if st.session_state.mode_of_questions != "Select Option":
+                       st.session_state.text_prompt = f'''Based on the image, generate only questions considering following constraints,
+                       1. number of questions  - {st.session_state.no_of_questions}
+                       2. mode of questions - {st.session_state.mode_of_questions}
+                       3. type of questions - {st.session_state.type_of_questions}
+                       4. Level of questions - {st.session_state.complexity}
+                       5. Class - {st.session_state.classq}
+                       6. Question Context - {st.session_state.cont}
+                       Generate questions according to Madhya Pradesh School Education Board
+                       Response is to be generated in both English and Hindi, first generate in English then in Hindi
+                       after generate Answer should be start new line.
+                       '''
+        
+                       image_base64 = to_base64(st.session_state.image)
+                       if image_base64:
+                          st.write("Image successfully converted to base64")
+                          formatted_output = generate_questions(image_base64)
+                          img = load_image(st.session_state.image)
+                          st.image(img)
+                          st.info(formatted_output)
+                       else:
+                          st.error("Failed to convert image to base64.")
+                else:
+                    st.info("Please upload an image file.")
    
-                
+
             if choose=="Skill Based Questions":
                 
                 col1, col2 = st.columns(2)
