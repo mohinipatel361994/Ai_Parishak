@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-client = OpenAI()
+
 
 st.set_page_config(layout='wide')
 
@@ -844,7 +844,7 @@ if st.session_state.teach=='Teachers':
                 #openai.api_base = ""  
                 #openai.api_key 
                 openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
-
+                client = OpenAI(api_key=openai_api_key2)
                 def load_image(img):
                     im = Image.open(img)
                     im = im.resize((400, 300))
