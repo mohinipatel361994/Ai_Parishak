@@ -861,7 +861,7 @@ if st.session_state.teach=='Teachers':
                 def generate_questions(image_base64):
                     response = client.chat.completions.create(
                       model="gpt-3.5-turbo",
-                      api_key=openai_api_key2
+                      api_key=openai_api_key2,
                       messages=[
                           {
                             "role": "user",
