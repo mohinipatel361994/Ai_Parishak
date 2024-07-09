@@ -120,7 +120,7 @@ def call_chatgpt(prompt: str, model_name: str = "gpt-3.5-turbo") -> str:
     #openai.api_version = "2024-02-15-preview"
     #openai.api_base = "https://aipmuuat.openai.azure.com/"  # Your Azure OpenAI resource's endpoint value.
     openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
-    client = OpenAI()
+    client = OpenAI(api_key=openai_api_key2)
     completion = client.chat.completions.create(
         engine=model_name,
         messages=[
