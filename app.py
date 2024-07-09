@@ -31,7 +31,7 @@ import fixed_function
 from io import BytesIO
 #from docxlatex import Document
 # from PIL import Image
-client = OpenAI(api_key=openai_api_key2)
+client = OpenAI()
 
 st.set_page_config(layout='wide')
 
@@ -861,6 +861,7 @@ if st.session_state.teach=='Teachers':
                 def generate_questions(image_base64):
                     response = client.chat.completions.create(
                       model="gpt-3.5-turbo",
+                      api_key=openai_api_key2
                       messages=[
                           {
                             "role": "user",
