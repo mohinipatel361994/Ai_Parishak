@@ -166,13 +166,15 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 #    {} 
         
 #"""
-ai_topic_prompt1=  """  Format the response properly for display on the webpage. Generate questions based on the content of the document provided by the user.
-                        Generate {} type {} questions. The difficulty level should be {}. The topic to be used for generating questions and answers is {}, 
-                        but if the topic provided by the user is not found in the given document, then respond to the user with the message "This topic is not available in the document." 
-                        Then list all the topics which are available in the provided document in a tabular format. If the topic is not specified and left blank, generate the requested questions randomly from the provided document. 
-                        If "Questions with answers" is selected, also generate the answers. Answers should start with a new line.
-                        Document provided by the user is as given below:
-                        {}."""
+ai_topic_prompt1 =    """
+                        Format the response properly for display on the webpage. Generate {} questions of type {}. The difficulty level should be {}. Use the topic "{}" to generate questions and answers. 
+                        If the specified topic "{}" is not found in the document, respond with "This topic is not available in the document." 
+                        List all available topics in the document in a tabular format if the topic is not specified. 
+                        If no topic is specified, generate questions randomly from the document. 
+                        If "Questions with answers" is selected, ensure answers start on a new line.
+                        Document provided by the user:
+                        {}
+                      """
 
 ai_topic_prompt_questions="""Based on the context, extract only questions
 Remember to keep all the information as it is. Response - {}
