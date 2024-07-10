@@ -161,7 +161,7 @@ ai_topic_prompt1=""" Format the response properly for display on webpage. Genera
     Generate {} type {} questions. The difficulty level should be {}. Topic to be used for generating questions is {}, 
     but if Topic provided by user is not found in the given document, then respond to user with message "This topic is not available in the Book." and then list all the topics which are available in the provided document in a tabular format.
     If Topic is not specified and left as blank, generate asked questions randomly from the provided document. 
-    Questions and answers should start with a new line.
+    If selected Questions with answers then also generate the answers, answers should start with a new line.
     Document provided by user is as given below:
     {} 
         
