@@ -166,10 +166,13 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 #    {} 
         
 #"""
-ai_topic_prompt1=""" Please generate no_of_questions {}, complexity{}, type_of_questions{}, based on the provided content related to topic_name{}. 
-                     The content is as follows: text{}. The questions should be in language{}. 
-                     Ensure the questions are relevant to the specified topic and, 
-                     if the mode of questions is "Questions with Answers," include accurate and concise answers."""
+ai_topic_prompt1=  """  Format the response properly for display on the webpage. Generate questions based on the content of the document provided by the user.
+                        Generate {} type {} questions. The difficulty level should be {}. The topic to be used for generating questions and answers is {}, 
+                        but if the topic provided by the user is not found in the given document, then respond to the user with the message "This topic is not available in the document." 
+                        Then list all the topics which are available in the provided document in a tabular format. If the topic is not specified and left blank, generate the requested questions randomly from the provided document. 
+                        If "Questions with answers" is selected, also generate the answers. Answers should start with a new line.
+                        Document provided by the user is as given below:
+                        {}."""
 
 ai_topic_prompt_questions="""Based on the context, extract only questions
 Remember to keep all the information as it is. Response - {}
