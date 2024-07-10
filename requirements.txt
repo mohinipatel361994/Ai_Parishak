@@ -1,4 +1,4 @@
-langchain==0.0.228
+langchain
 streamlit
 openai>=0.27.0
 pytesseract
@@ -27,4 +27,4 @@ sentence-transformers==2.2.2
 protobuf==3.20.*
 pysqlite3-binary
 weaviate-client
-chromadb==0.3.26
+chromadb
