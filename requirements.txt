@@ -20,7 +20,6 @@ docxlatex
 docx2txt
 transformers
 torch
-chromadb
 pdf2image
 InstructorEmbedding
 rag
@@ -28,3 +27,4 @@ sentence-transformers==2.2.2
 protobuf==3.20.*
 pysqlite3-binary
 weaviate-client
+chromadb
