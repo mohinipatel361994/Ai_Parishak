@@ -1002,7 +1002,7 @@ if st.session_state.teach=='Students':
                         st.session_state.messag = []
                     with col_2:
                     # Display chat messages from history on app rerun
-                         for message in st.session_state.messag:
+                        for message in st.session_state.messag:
                              with st.chat_message(message["role"]):
                                   if message['content'] != user_input:
                                     st.markdown(message["content"])
@@ -1017,7 +1017,7 @@ if st.session_state.teach=='Students':
                          temperature=0.7,
                          api_key=openai_api_key2
                          ),memory=memory)
-                         _ = st.session_state.llm({'question':initialise_prompt})
+                     _ = st.session_state.llm({'question':initialise_prompt})
                     if user_input:
                         english_output = chat.answerq(user_input,st.session_state.text)
                         print('get the output')
@@ -1033,8 +1033,8 @@ if st.session_state.teach=='Students':
                                  for char in english_output:
                                      full_response += char
                                      message_placeholder.markdown(full_response + "▌")
-                                     message_placeholder.markdown(full_response)
-                                     markdown_to_pdf(full_response,'question.pdf')
+                                 message_placeholder.markdown(full_response)
+                                 markdown_to_pdf(full_response,'question.pdf')
                                  word_doc = create_word_doc(full_response)
                                  doc_buffer = download_doc(word_doc)
                                  st.download_button(label="Download Word Document",
