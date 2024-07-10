@@ -195,19 +195,7 @@ learn_outcome_prompt = """
 #"""
 
 student_prompt = """
-                    Welcome! Please upload your Books, Notes, 
-                    or Question Banks in generate response from context {}. 
-                    Once you've uploaded your files, 
-                    the system will process them accordingly. 
-                    For generate response from context, the system will check 
-                    if the file already exists. 
-                    If it doesn't, 
-                    the text will be extracted and saved; 
-                    otherwise, the previously saved text 
-                    will be loaded. 
-                    For generate response from context , 
-                    the text will be extracted directly. 
-                    After processing the text, 
+                    Based on query {} generate response from context {}
                     you will be able to ask questions based on the uploaded content. 
                     Please enter your question, and the system will generate a response based on the extracted information. 
                     make sure generate response should be generated from uploaded document only.
