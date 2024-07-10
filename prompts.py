@@ -157,15 +157,19 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 #    
 #    
 #"""
-ai_topic_prompt1=""" Format the response properly for display on webpage. Generate questions based on the content of the document provided by the user.
-    Generate {} type {} questions. The difficulty level should be {}. Topic to be used for generating questions and answers is {}, 
-    but if Topic provided by user is not found in the given document, then respond to user with message "This topic is not available in the Book." and then list all the topics which are available in the provided document in a tabular format.
-    If Topic is not specified and left as blank, generate asked questions randomly from the provided document. 
-    If selected Questions with answers then also generate the answers, answers should start with a new line.
-    Document provided by user is as given below:
-    {} 
+#ai_topic_prompt1=""" Format the response properly for display on webpage. Generate questions based on the content of the document provided by the user.
+#    Generate {} type {} questions. The difficulty level should be {}. Topic to be used for generating questions and answers is {}, 
+#    but if Topic provided by user is not found in the given document, then respond to user with message "This topic is not available in the Book." and then list all the topics which are available in the provided document in a tabular format.
+#    If Topic is not specified and left as blank, generate asked questions randomly from the provided document. 
+#    If selected Questions with answers then also generate the answers, answers should start with a new line.
+#    Document provided by user is as given below:
+#    {} 
         
-"""
+#"""
+ai_topic_prompt1="""Please generate {no_of_questions} {complexity} {type_of_questions} based on the provided content related to {topic_name}. 
+                     The content is as follows: {text}. The questions should be in {language}. 
+                     Ensure the questions are relevant to the specified topic and, 
+                     if the mode of questions is "Questions with Answers," include accurate and concise answers."""
 
 ai_topic_prompt_questions="""Based on the context, extract only questions
 Remember to keep all the information as it is. Response - {}
