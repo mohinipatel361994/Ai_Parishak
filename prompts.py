@@ -194,12 +194,13 @@ learn_outcome_prompt = """
 #make sure generate response should be generated from uploaded document only.
 #"""
 
-student_prompt = """
-                    Based on query {} generate response from context {}
-                    you will be able to ask questions based on the uploaded content. 
-                    Please enter your question, and the system will generate a response based on the extracted information. 
+student_prompt =   """
+                    Based on query {} generate response from context {} 
+                    I have uploaded a PDF or docx or text files.Can you summarize the main findings?,
+                    according the uploaded files,generate response the my query in proper way,
+                    make sure generate response should be from uploaded document only.generate a response based on the extracted information. 
                     make sure generate response should be generated from uploaded document only.
-            """
+                    """
 
 master_prompt = """
 Level of questions : This is the depth of the questions the teacher wants to generate. A low depth will cover the basics, and generalizations while a high depth will cover the specifics, details, unfamiliar, complex, and side cases. The lowest depth level is Easy, and the highest is Complex.
