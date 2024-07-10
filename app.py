@@ -1002,11 +1002,10 @@ if st.session_state.teach=='Students':
                         st.session_state.messag = []
                     with col_2:
                     # Display chat messages from history on app rerun
-                        for message in st.session_state.messag:
+                         for message in st.session_state.messag:
                              with st.chat_message(message["role"]):
                                   if message['content'] != user_input:
                                     st.markdown(message["content"])
-                    
                          st.session_state.llm = load_chain(docsearch)
                          print('chain loaded')
                          memory = ConversationBufferMemory(
