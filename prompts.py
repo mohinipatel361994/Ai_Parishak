@@ -196,10 +196,9 @@ learn_outcome_prompt = """
 
 student_prompt =   """
                     Based on query {} generate response from context {} 
-                    I have uploaded a PDF or docx or text files.Can you summarize the main findings?,
-                    according the uploaded files,generate response the my query in proper way,
-                    make sure generate response should be from uploaded document only.generate a response based on the extracted information. 
-                    make sure generate response should be generated from uploaded document only.
+                    If document uploaded then generate the response based on the query.Can You Also Summarize The Main Points,
+                    make sure generate response should be from uploaded document only.
+                    generate a response based on the extracted information. 
                     """
 
 master_prompt = """
