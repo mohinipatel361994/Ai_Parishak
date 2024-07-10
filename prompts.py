@@ -108,8 +108,7 @@ ai_prompt="""Based on the context, generate only questions or questions with ans
             If type of questions is selected as "Short Questions", create questions that can be answered in 3 sentences or less.
             
             The response is to be generated in English and Hindi, first in English then in Hindi.
-            If the number of questions is mentioned as zero, then display the message "Please specify the number of questions to generate" and do not provide a further response.
-            If the number of questions is mentioned, then generate the response.
+            
             If you are generating answers as well, the answer must always start on a new line.
             Generate the response from the provided context only.
             Remember to keep all the information as it is. Response - {}
