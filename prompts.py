@@ -196,21 +196,21 @@ learn_outcome_prompt = """
 
 student_prompt = """
                     Welcome! Please upload your Books, Notes, 
-                    or Question Banks in either PDF or DOCX format. 
+                    or Question Banks in generate response from context {}. 
                     Once you've uploaded your files, 
                     the system will process them accordingly. 
-                    For PDF files, the system will check 
+                    For generate response from context {}, the system will check 
                     if the file already exists. 
                     If it doesn't, 
                     the text will be extracted and saved; 
                     otherwise, the previously saved text 
                     will be loaded. 
-                    For DOCX files, 
+                    For generate response from context {}, 
                     the text will be extracted directly. 
                     After processing the text, 
                     you will be able to ask questions based on the uploaded content. 
                     Please enter your question, and the system will generate a response based on the extracted information. 
-                    If you have any questions or need assistance during this process, feel free to ask
+                    make sure generate response should be generated from uploaded document only.
             """
 
 master_prompt = """
