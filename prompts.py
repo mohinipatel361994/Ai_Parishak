@@ -166,8 +166,8 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 #    {} 
         
 #"""
-ai_topic_prompt1="""Please generate {no_of_questions} {complexity} {type_of_questions} based on the provided content related to {topic_name}. 
-                     The content is as follows: {text}. The questions should be in {language}. 
+ai_topic_prompt1=""" Please generate no_of_questions {}, complexity{}, type_of_questions{}, based on the provided content related to topic_name{}. 
+                     The content is as follows: text{}. The questions should be in language{}. 
                      Ensure the questions are relevant to the specified topic and, 
                      if the mode of questions is "Questions with Answers," include accurate and concise answers."""
 
