@@ -1016,7 +1016,7 @@ if st.session_state.teach=='Students':
                          temperature=0.7,
                          api_key=openai_api_key2
                          ),memory=memory)
-                     _ = st.session_state.llm({'question':initialise_prompt})
+                        _ = st.session_state.llm({'question':initialise_prompt})
                     if user_input:
                         english_output = chat.answerq(user_input,st.session_state.text)
                         print('get the output')
