@@ -111,7 +111,7 @@ ai_prompt="""Based on the context, generate only questions or questions with ans
             
             If you are generating answers as well, the answer must always start on a new line.
             Generate the response from the provided context only.
-            Remember to keep all the information as it is. Response - {}
+            Response - {}
 """
 
 ai_topic_prompt="""Based on the context, generate only questions considering following constraints,
