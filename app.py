@@ -1084,95 +1084,54 @@ if st.session_state.teach=='Students':
 
 
 # MAIN CONTENT PART - Administration Module Code
-if st.session_state.teach=='Administration':
-    choose=st.radio("Select Options",("Add Document","Download Document","Delete Document","View Documents"),horizontal=True)
+if st.session_state.teach == 'Administration':
+    choose = st.radio("Select Options", ("Add Document", "Download Document", "Delete Document", "View Documents"), horizontal=True)
 
-    if choose=="Add Document":
-        files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
+    if choose == "Add Document":
+        files = st.file_uploader('Upload Books, Notes, Question Banks', accept_multiple_files=True, type=['pdf'])
         if files:
-            file_extension = files[0].name.split(".")[-1]
-            if file_extension == "pdf":
-                path = files[0].read()
-                name=files[0].name[:-4]
-                # Check if the file exists
-                if not os.path.exists("preuploaded/"+name+".txt"):
-                    print("File Not Exist")
-                    with open("preuploaded/"+name+'.txt', 'w',encoding='utf-8') as file:
-                    # Open a file in write mode (creates a new file if it doesn't exist)
-                        st.session_state.text= chat.load_pdf_text(files[0],name)
-                        file.write(st.session_state.text)
+            for uploaded_file in files:
+                file_path = os.path.join("preuploaded", uploaded_file.name)
+                if not os.path.exists(file_path):
+                    with open(file_path, 'wb') as file:
+                        file.write(uploaded_file.getbuffer())
+                    st.success(f"{uploaded_file.name} uploaded successfully.")
                 else:
-                    st.write("Document Exist")
+                    st.warning(f"{uploaded_file.name} already exists.")
 
-    if choose=="Download Document":
-        # Example usage
+    if choose == "Download Document":
         folder_path = "./preuploaded"
-
-        files = os.listdir(folder_path)
-        files.sort()            
-        # Filter out only text files
-        text_files = [file for file in files if file.endswith(".txt")]
-
-        text_files.insert(0, "Select document")
-
-        # Create a selectbox with multi-selection enabled
-        selected_file = st.selectbox("Select Document", text_files)
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        pdf_files.insert(0, "Select document")
+        selected_file = st.selectbox("Select Document", pdf_files)
 
         if selected_file != "Select document":
-            # Display download button for the selected file
-            st.write("Download selected file:")
             with open(os.path.join(folder_path, selected_file), "rb") as file:
-                st.download_button(label="Download", data=file, file_name=selected_file, mime="text/plain")
+                st.download_button(label="Download", data=file, file_name=selected_file, mime="application/pdf")
         else:
-            st.write("Select Document to Download")
+            st.info("Select a document to download.")
 
-
-    if choose=="View Documents":
-        def view_text_files(folder_path):
-            # Get a list of all files in the folder
-            files = os.listdir(folder_path)
-            files.sort()
-            # Filter out only text files
-            text_files = [file for file in files if file.endswith(".txt")]
-
-            if text_files:
-                st.write("Documents in the folder:")
-                for text_file in text_files:
-                    st.write(text_file)
-            else:
-                st.write("No Documents found in the folder.")
-
-        # Example usage
+    if choose == "View Documents":
         folder_path = "./preuploaded"
-        view_text_files(folder_path)
-
-    if choose=="Delete Document":
-        def remove_text_file(folder_path, file_name):
-            file_path = os.path.join(folder_path, file_name)
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                st.write(f"{file_name} has been successfully removed")
-            else:
-                st.write(f"File {file_name} does not exist in {folder_path}")
-
-        # Example usage
-        folder_path = "./preuploaded"
-
-        files = os.listdir(folder_path)
-        files.sort()    
-            # Filter out only text files
-        text_files = [file for file in files if file.endswith(".txt")]
-
-        text_files.insert(0, "Select document")
-
-        # Create a selectbox with multi-selection enabled
-        selected_file = st.selectbox("Select Document", text_files)
-
-        # Display the selected files
-        if selected_file!="Select document":
-            remove_text_file(folder_path, selected_file)
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        if pdf_files:
+            st.write("Documents in the folder:")
+            for pdf_file in pdf_files:
+                st.write(pdf_file)
         else:
-            st.write("Select Document to Delete")
+            st.info("No documents found in the folder.")
+
+    if choose == "Delete Document":
+        folder_path = "./preuploaded"
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        pdf_files.insert(0, "Select document")
+        selected_file = st.selectbox("Select Document", pdf_files)
+
+        if selected_file != "Select document":
+            os.remove(os.path.join(folder_path, selected_file))
+            st.success(f"{selected_file} has been successfully removed.")
+        else:
+            st.info("Select a document to delete.")
         
         
     if choose=="Add Word to Dictionary":
