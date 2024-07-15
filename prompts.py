@@ -158,7 +158,7 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 ai_topic_prompt1=""" Format the response properly for display on webpage. Generate questions based on the content of the document provided by the user.
                      Generate {} type {} questions. The difficulty level should be {}. Topic to be used for generating questions and answers is {}, 
                      but if Topic provided by user or its variant(s) is/are not found in the given document, then respond to user with message "This topic is not available in the Book." and then list all the topics which are available in the provided document in a tabular format.
-                     generate the questions and answers based on document only. 
+                     also generate the questions and answers based on topic. 
                      If user selects 'Questions with answers' then also generate the answers, answers should start with a new line.
                      Document provided by user is as given below:
                     {} 
