@@ -968,11 +968,11 @@ with col_1:
                 length_function=len,
             )
             texts = text_splitter.split_text(raw_text)
-            st.write(f"PDF loaded and split into {len(texts)} chunks.")
+            #st.write(f"PDF loaded and split into {len(texts)} chunks.")
 
             embeddings = OpenAIEmbeddings(api_key=openai_api_key2)
             document_search = FAISS.from_texts(texts, embeddings)
-            st.write("Document embeddings created and stored in FAISS index.")
+            #st.write("Document embeddings created and stored in FAISS index.")
 
             chain = load_qa_chain(OpenAI(api_key=openai_api_key2), chain_type="stuff")
 
