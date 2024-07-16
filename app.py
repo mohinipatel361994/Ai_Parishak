@@ -912,137 +912,129 @@ if st.session_state.teach=='Students':
                                     st.success(f'Correct! {explanations[question_num]}')
                                 else:
                                     st.error(f'Incorrect :( \n\n The correct answer was: {answer_choices[answers[question_num][0]]}\n\n {explanations[question_num]}')
-    col_1,col_2 = st.columns([2,1])
-    with col_1:
-         if choose=="Ask a Query":
-                files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
-                if files:
-                    file_extension = files[0].name.split(".")[-1]
-                    if file_extension == "pdf":
-                        path = files[0].read()
-                        name=files[0].name[:-4]
-                        # Check if the file exists
-                        if not os.path.exists("studentuploaded/"+name+".txt"):
-                            print("File Not Exist")
-                            with open("studentuploaded/"+name+'.txt', 'w',encoding='utf-8') as file:
-                            # Open a file in write mode (creates a new file if it doesn't exist)
-                                st.session_state.text= chat.load_pdf_text(files[0],name)
-                                file.write(st.session_state.text)
-                        else:
-                            print("file Exist")
-                            st.session_state.filename=[]
-                            with open("studentuploaded/"+name+'.txt', 'r',encoding='utf-8') as file:
-                    #        Read the content of the file
-                                st.session_state.filename.append(name)
-                                st.session_state.text = file.read()    
-                        # print("Extracted Text is ########################")
-                        # print(st.session_state.text)    
-                    elif file_extension =="docx":
-                        st.session_state.filename=[]
-                        doc_file=files[0]
-                        doc_name=files[0].name[:-5]
-                        st.session_state.filename.append(doc_name)
-                        st.session_state.text= get_text(doc_file)
-                        #st.write(st.session_state.text)
-                        #print("Extracted Text is ########################")
-                        #print(st.session_state.text)
-                    else:
-                        learning_files = files if files is not None else []
-                        st.session_state.text, documents = chat.load_documents(learning_files)
-                        # print("Extracted Text is ########################")
-                        # print(st.session_state.text)
-                        
-                        # if st.session_state.text:
-                        #         st.session_state.format_chain = ConversationChain( llm=AzureChatOpenAI(
-                        #         deployment_name="gpt-4",
-                        #         temperature=0
-                        #         ))
-                        #         formatted_output = chat.format_response(st.session_state.text)
-                        #         st.info(formatted_output)
-                    if st.session_state.text:
+    
+from PyPDF2 import PdfReader
+from langchain.embeddings.openai import OpenAIEmbeddings
+from langchain.text_splitter import CharacterTextSplitter
+from langchain.chains.question_answering import load_qa_chain
+from langchain.llms import OpenAI
+from langchain.vectorstores import FAISS
+from docx import Document
+from translate import Translator
+import os
+import time
 
-                        # st.session_state.aiformat_chain = ConversationChain( llm=AzureChatOpenAI(
-                        # deployment_name="gpt-4turbo",
-                        # temperature=0
-                        # ))
-                        # formatted_output = chat.aiformat_response(st.session_state.text)
-                        # st.info(formatted_output)
-                        print("Inside Question Generation Bot")
-                        with open('dictionary.json','r') as f:
-                            existing_dictionary = json.load(f)
+# Function to split text into smaller chunks
+def split_text_into_chunks(text, max_length):
+    words = text.split()
+    chunks = []
+    current_chunk = []
+    current_length = 0
+    for word in words:
+        if current_length + len(word) + 1 <= max_length:
+            current_chunk.append(word)
+            current_length += len(word) + 1
+        else:
+            chunks.append(" ".join(current_chunk))
+            current_chunk = [word]
+            current_length = len(word) + 1
+    if current_chunk:
+        chunks.append(" ".join(current_chunk))
+    return chunks
+openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 
-                        lowercase_dict = {key.lower(): value for key, value in existing_dictionary.items()}
 
-                        docsearch = chat.get_cache_vectorstore(st.session_state.text,st.session_state.filename[0])
-                        # Define a function to clear the input text
-                        # Storing the chat
-                    if 'generated' not in st.session_state:
-                        st.session_state['generated'] = []
+if 'history' not in st.session_state:
+    st.session_state.history = []
 
-                    if 'past' not in st.session_state:
-                        st.session_state['past'] = []
+col_1, col_2 = st.columns([2, 1])
 
-                    # Define a function to clear the input text
-                    def clear_input_text():
-                        global input_text
-                        input_text = ""
+with col_1:
+    if choose == "Ask a Query":
+        uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 
-                    # We will get the user's input by calling the get_text function
-                    def get_text():
-                        global input_text
-                        input_text = st.chat_input("Ask a question!")
-                        return input_text
+        if uploaded_file is not None:
+            pdfreader = PdfReader(uploaded_file)
+            raw_text = ''
+            for i, page in enumerate(pdfreader.pages):
+                content = page.extract_text()
+                if content:
+                    raw_text += content
 
-                    user_input = get_text()
+            text_splitter = CharacterTextSplitter(
+                separator="\n",
+                chunk_size=800,
+                chunk_overlap=200,
+                length_function=len,
+            )
+            texts = text_splitter.split_text(raw_text)
+            st.write(f"PDF loaded and split into {len(texts)} chunks.")
 
-                    print('get the input text')
+            embeddings = OpenAIEmbeddings(api_key=openai_api_key2)
+            document_search = FAISS.from_texts(texts, embeddings)
+            st.write("Document embeddings created and stored in FAISS index.")
+
+            chain = load_qa_chain(OpenAI(api_key=openai_api_key2), chain_type="stuff")
+
+            query = st.chat_input("Ask a question about the PDF:")
+            st.write(query)
+            if query:
+                docs = document_search.similarity_search(query)
+                answer = chain.run(input_documents=docs, question=query)
+                st.session_state.history.append((query, answer))
+                st.write("Answer:", answer)
+
+                # Translate to Hindi
+                translator = Translator(to_lang="hi")
                 
-                    # Initialize chat history
-                    if "messag" not in st.session_state:
-                        st.session_state.messag = []
-                    with col_2:
-                    # Display chat messages from history on app rerun
-                         for message in st.session_state.messag:
-                             with st.chat_message(message["role"]):
-                                  if message['content'] != user_input:
-                                    st.markdown(message["content"])
-                         st.session_state.llm = load_chain(docsearch)
-                         print('chain loaded')
-                         memory = ConversationBufferMemory(
-                         return_messag=True,
-                          )
-                         st.session_state.language_chain = ConversationChain( llm=ChatOpenAI(
-                         model="gpt-3.5-turbo",
-                         temperature=0.7,
-                         api_key=openai_api_key2
-                         ),memory=memory)
-                         _ = st.session_state.llm({'question':initialise_prompt})
-                    if user_input:
-                        english_output = chat.answerq(user_input,st.session_state.text)
-                        print('get the output')
-                        st.session_state.messag.append({"role": "user", "content": user_input})
-                        # Display user message in chat message container
-                        with st.chat_message("user"):
-                                st.markdown(user_input)  
+                # Split query and answer into smaller chunks for translation
+                query_chunks = split_text_into_chunks(query, 500)
+                query_hindi_chunks = [translator.translate(chunk) for chunk in query_chunks]
+                query_hindi = " ".join(query_hindi_chunks)
 
-                        # Display assistant response in chat message container
-                        with st.chat_message("assistant"):
-                                 message_placeholder = st.empty()
-                                 full_response = ""
-                                 for char in english_output:
-                                     full_response += char
-                                     message_placeholder.markdown(full_response + "▌")
-                                 message_placeholder.markdown(full_response)
-                                 markdown_to_pdf(full_response,'question.pdf')
-                                 word_doc = create_word_doc(full_response)
-                                 doc_buffer = download_doc(word_doc)
-                                 st.download_button(label="Download Word Document",
-                                            data=doc_buffer, 
-                                            file_name="generated_document.docx",
-                                            mime="application/octet-stream",
-                                            key='worddownload'
-                                                )
-                        st.session_state.messag.append({"role": "assistant", "content": english_output})
+                answer_chunks = split_text_into_chunks(answer, 500)
+                answer_hindi_chunks = [translator.translate(chunk) for chunk in answer_chunks]
+                answer_hindi = " ".join(answer_hindi_chunks)
+
+                st.session_state.history[-1] += (query_hindi, answer_hindi)
+                st.write("**In Hindi:**")
+                st.write(f"**Q:** {query_hindi}")
+                st.write(f"**A:** {answer_hindi}")
+
+            if st.session_state.history:
+                doc = Document()
+                doc.add_heading('Questions and Answers', 0)
+
+                for i, (question, answer, question_hindi, answer_hindi) in enumerate(st.session_state.history):
+                    doc.add_heading(f"Q{i+1}: {question}", level=1)
+                    doc.add_paragraph(f"A{i+1}: {answer}")
+                    doc.add_heading(f"Q{i+1} (Hindi): {question_hindi}", level=1)
+                    doc.add_paragraph(f"A{i+1} (Hindi): {answer_hindi}")
+
+                # Save the document in the current directory with a unique name
+                timestamp = time.strftime("%Y%m%d-%H%M%S")
+                doc_path = f"QnA_History_{timestamp}.docx"
+                doc.save(doc_path)
+
+                with open(doc_path, "rb") as f:
+                    st.download_button(
+                        label="Download Word Document",
+                        data=f,
+                        file_name=doc_path,
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                    )
+
+        # Add a section for predefined prompts
+        
+
+        with col_2:
+            st.write("### History")
+            for i, (question, answer, question_hindi, answer_hindi) in enumerate(st.session_state.history):
+                st.write(f"**Q{i+1}:** {question}")
+                st.write(f"**A{i+1}:** {answer}")
+                st.write(f"**Q{i+1} (Hindi):** {question_hindi}")
+                st.write(f"**A{i+1} (Hindi):** {answer_hindi}")
+
     if choose=="Terminologies and Keyterms":
         st.write('Note: File name should contain subject and class like maths_class10.pdf/.docx')
         files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
