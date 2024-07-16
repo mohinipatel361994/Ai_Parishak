@@ -941,100 +941,99 @@ if st.session_state.teach=='Students':
 
 
 # Function to split text into smaller chunks
+    openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 
-openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
+    if 'history' not in st.session_state:
+        st.session_state.history = []
 
+    col_1, col_2 = st.columns([2, 1])
 
-if 'history' not in st.session_state:
-    st.session_state.history = []
+    with col_1:
+        if choose == "Ask a Query":
+            uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
 
-col_1, col_2 = st.columns([2, 1])
+            if uploaded_file is not None:
+                pdfreader = PdfReader(uploaded_file)
+                raw_text = ''
+                for i, page in enumerate(pdfreader.pages):
+                    content = page.extract_text()
+                    if content:
+                        raw_text += content
 
-with col_1:
-    if choose == "Ask a Query":
-        uploaded_file = st.file_uploader("Upload a PDF file", type=["pdf"])
+                text_splitter = CharacterTextSplitter(
+                    separator="\n",
+                    chunk_size=800,
+                    chunk_overlap=200,
+                    length_function=len,
+                )
+                texts = text_splitter.split_text(raw_text)
+                st.write(f"PDF loaded and split into {len(texts)} chunks.")
 
-        if uploaded_file is not None:
-            pdfreader = PdfReader(uploaded_file)
-            raw_text = ''
-            for i, page in enumerate(pdfreader.pages):
-                content = page.extract_text()
-                if content:
-                    raw_text += content
+                embeddings = OpenAIEmbeddings(api_key=openai_api_key2)
+                document_search = FAISS.from_texts(texts, embeddings)
+                st.write("Document embeddings created and stored in FAISS index.")
 
-            text_splitter = CharacterTextSplitter(
-                separator="\n",
-                chunk_size=800,
-                chunk_overlap=200,
-                length_function=len,
-            )
-            texts = text_splitter.split_text(raw_text)
-            #st.write(f"PDF loaded and split into {len(texts)} chunks.")
+                chain = load_qa_chain(OpenAI(api_key=openai_api_key2), chain_type="stuff")
 
-            embeddings = OpenAIEmbeddings(api_key=openai_api_key2)
-            document_search = FAISS.from_texts(texts, embeddings)
-            #st.write("Document embeddings created and stored in FAISS index.")
+                query = st.chat_input("Ask a question about the PDF:")
+                st.write(query)
+                if query:
+                    docs = document_search.similarity_search(query)
+                    answer = chain.run(input_documents=docs, question=query)
+                    st.session_state.history.append((query, answer))
+                    st.write("Answer:", answer)
 
-            chain = load_qa_chain(OpenAI(api_key=openai_api_key2), chain_type="stuff")
+                    # Translate to Hindi
+                    translator = Translator(to_lang="hi")
+                    
+                    # Split query and answer into smaller chunks for translation
+                    query_chunks = split_text_into_chunks(query, 500)
+                    query_hindi_chunks = [translator.translate(chunk) for chunk in query_chunks]
+                    query_hindi = " ".join(query_hindi_chunks)
 
-            query = st.chat_input("Ask a question about the PDF:")
-            st.write(query)
-            if query:
-                docs = document_search.similarity_search(query)
-                answer = chain.run(input_documents=docs, question=query)
-                st.session_state.history.append((query, answer))
-                st.write("Answer:", answer)
+                    answer_chunks = split_text_into_chunks(answer, 500)
+                    answer_hindi_chunks = [translator.translate(chunk) for chunk in answer_chunks]
+                    answer_hindi = " ".join(answer_hindi_chunks)
 
-                # Translate to Hindi
-                translator = Translator(to_lang="hi")
-                
-                # Split query and answer into smaller chunks for translation
-                query_chunks = split_text_into_chunks(query, 500)
-                query_hindi_chunks = [translator.translate(chunk) for chunk in query_chunks]
-                query_hindi = " ".join(query_hindi_chunks)
+                    st.session_state.history[-1] += (query_hindi, answer_hindi)
+                    st.write("**In Hindi:**")
+                    st.write(f"**Q:** {query_hindi}")
+                    st.write(f"**A:** {answer_hindi}")
 
-                answer_chunks = split_text_into_chunks(answer, 500)
-                answer_hindi_chunks = [translator.translate(chunk) for chunk in answer_chunks]
-                answer_hindi = " ".join(answer_hindi_chunks)
+                if st.session_state.history:
+                    doc = Document()
+                    doc.add_heading('Questions and Answers', 0)
 
-                st.session_state.history[-1] += (query_hindi, answer_hindi)
-                st.write("**In Hindi:**")
-                st.write(f"**Q:** {query_hindi}")
-                st.write(f"**A:** {answer_hindi}")
+                    for i, (question, answer, question_hindi, answer_hindi) in enumerate(st.session_state.history):
+                        doc.add_heading(f"Q{i+1}: {question}", level=1)
+                        doc.add_paragraph(f"A{i+1}: {answer}")
+                        doc.add_heading(f"Q{i+1} (Hindi): {question_hindi}", level=1)
+                        doc.add_paragraph(f"A{i+1} (Hindi): {answer_hindi}")
 
-            if st.session_state.history:
-                doc = Document()
-                doc.add_heading('Questions and Answers', 0)
+                    # Save the document in the current directory with a unique name
+                    timestamp = time.strftime("%Y%m%d-%H%M%S")
+                    doc_path = f"QnA_History_{timestamp}.docx"
+                    doc.save(doc_path)
 
+                    with open(doc_path, "rb") as f:
+                        st.download_button(
+                            label="Download Word Document",
+                            data=f,
+                            file_name=doc_path,
+                            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        )
+
+            # Add a section for predefined prompts
+            
+
+            with col_2:
+                st.write("### History")
                 for i, (question, answer, question_hindi, answer_hindi) in enumerate(st.session_state.history):
-                    doc.add_heading(f"Q{i+1}: {question}", level=1)
-                    doc.add_paragraph(f"A{i+1}: {answer}")
-                    doc.add_heading(f"Q{i+1} (Hindi): {question_hindi}", level=1)
-                    doc.add_paragraph(f"A{i+1} (Hindi): {answer_hindi}")
+                    st.write(f"**Q{i+1}:** {question}")
+                    st.write(f"**A{i+1}:** {answer}")
+                    st.write(f"**Q{i+1} (Hindi):** {question_hindi}")
+                    st.write(f"**A{i+1} (Hindi):** {answer_hindi}")
 
-                # Save the document in the current directory with a unique name
-                timestamp = time.strftime("%Y%m%d-%H%M%S")
-                doc_path = f"QnA_History_{timestamp}.docx"
-                doc.save(doc_path)
-
-                with open(doc_path, "rb") as f:
-                    st.download_button(
-                        label="Download Word Document",
-                        data=f,
-                        file_name=doc_path,
-                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                    )
-
-        # Add a section for predefined prompts
-        
-
-        with col_2:
-            st.write("### History")
-            for i, (question, answer, question_hindi, answer_hindi) in enumerate(st.session_state.history):
-                st.write(f"**Q{i+1}:** {question}")
-                st.write(f"**A{i+1}:** {answer}")
-                st.write(f"**Q{i+1} (Hindi):** {question_hindi}")
-                st.write(f"**A{i+1} (Hindi):** {answer_hindi}")
 
     if choose=="Terminologies and Keyterms":
         st.write('Note: File name should contain subject and class like maths_class10.pdf/.docx')
