@@ -6,13 +6,12 @@ from openai import OpenAI
 import streamlit as st
 import os
 import pandas as pd
-#from rag import *
-import rag
+from rag import *
 from PIL import Image
 from chat import load_chain
 import numpy as np
+import logging
 from prompts import initialise_prompt
-from prompts import initialise_prompt2
 import pytesseract
 from pdf2image import convert_from_bytes
 from PyPDF2 import PdfReader
@@ -20,16 +19,18 @@ from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationChain
 from langchain.memory import ConversationBufferMemory
 import docx
-from prompts import ai_prompt,ai_topic_prompt,latex_prompt,ai_topic_prompt1
+from prompts import ai_prompt,ai_topic_prompt,latex_prompt,student_prompt,mcq_test_prompt,learn_outcome_prompt,ai_topic_prompt1
 from functions import read_word_table,create_word_doc,get_text
 import subprocess
 import re
+import constants
 from dotenv import load_dotenv
 from docxlatex import Document
 import json
 import base64
 import fixed_function
 from io import BytesIO
+import streamlit as st
 from PyPDF2 import PdfReader
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
@@ -42,7 +43,7 @@ import os
 import time
 #from docxlatex import Document
 # from PIL import Image
-#c = OpenAI()
+c = OpenAI()
 
 st.set_page_config(layout='wide')
 
@@ -70,12 +71,10 @@ images = ['6MarkQ']
 
 #os.environ["OPENAI_API_TYPE"] = ""
 #os.environ["OPENAI_API_VERSION"] = ""
-#os.environ["OPENAI_API_BASE"] = ""
-#os.environ["OPENAI_API_KEY"]
-
-#openai_api_key = os.getenv('OPENAI_API_KEY')
 openai_api_key = os.getenv("OPENAI_API_KEY")
 openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
+
+#openai_api_key = os.getenv('OPENAI_API_KEY')
 TEMP_MD_FILE = r"question.pdf"
 TEMP_PDF_FILE = "__temp.pdf"
 
@@ -208,35 +207,11 @@ def display_q(df):
             st.image(row['Image Path'],width=180)
         st.divider()
 
-
-def split_text_into_chunks(text, max_length):
-    words = text.split()
-    chunks = []
-    current_chunk = []
-    current_length = 0
-    for word in words:
-        if current_length + len(word) + 1 <= max_length:
-            current_chunk.append(word)
-            current_length += len(word) + 1
-        else:
-            chunks.append(" ".join(current_chunk))
-            current_chunk = [word]
-            current_length = len(word) + 1
-    if current_chunk:
-        chunks.append(" ".join(current_chunk))
-    return chunks
-
-
-
-# MAIN CONTENT PART - to update chat history in csv for download a pdf
 pd.set_option('display.max_colwidth', None)
 st.session_state.ques = pd.read_csv('update_question.csv')
 
 
 
-
-
-# MAIN CONTENT PART - Page Header Section for Logos and Title
 with st.container():
     col1, col2, col3 = st.columns([0.2, 0.6, 0.2], gap="small")
     with col1:
@@ -248,7 +223,7 @@ with st.container():
         st.markdown("###### AI Based Question Generation Assistance")
     with col3:
         l = Image.open('assests/28072020125926mpsedclogo.png')
-        re = l.resize((165, 127))  # Corrected the resize method call
+        re = l.resize((165, 155))  # Corrected the resize method call
         st.image(re)
          
         
@@ -285,238 +260,169 @@ def correct_bhashni_translations(text,lowercase_dict):
             corrected_text.append(word)  # If no correction needed, keep the word unchanged
     return ' '.join(corrected_text)
 
+def split_text_into_chunks(text, max_length):
+    words = text.split()
+    chunks = []
+    current_chunk = []
+    current_length = 0
+    for word in words:
+        if current_length + len(word) + 1 <= max_length:
+            current_chunk.append(word)
+            current_length += len(word) + 1
+        else:
+            chunks.append(" ".join(current_chunk))
+            current_chunk = [word]
+            current_length = len(word) + 1
+    if current_chunk:
+        chunks.append(" ".join(current_chunk))
+    return chunks
+from PyPDF2 import PdfReader
+def list_files(folder_path):
+    return os.listdir(folder_path)
 
+# Function to remove file extension
+def remove_extension(filename):
+    return os.path.splitext(filename)[0]
 
+# Function to convert PDF to text
+def pdf_to_text(file_path):
+    text = ""
+    with open(file_path, 'rb') as file:
+        pdf_reader = PdfReader(file)
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+    return text
 
-# MAIN CONTENT PART - Select User Role
-st.session_state.teach = st.radio("Select User Role",(
+    
+st.session_state.teach = st.radio("Select Option",(
     'Teachers','Students','Administration'),key='airadio1')
-
-# MAIN CONTENT PART - Teacher Module Code
 if st.session_state.teach=='Teachers':
     st.session_state.quesai = st.title("Generate Question and Answer")
     if st.session_state.quesai:
-        #tab1, tab2,tab3= st.tabs(["1. Upload Document", "2. Text Analyzer","3. Skill based Questions"])
-            
-            # TEACHER MODULE CODE - Select Available Options
-            choose=st.radio("Select Options",("Pre Uploaded","Text Analyzer","Topic Based Questions","Terminologies and Keyterms","Learning Outcomes"),horizontal=True)
-            
-            # SELECT AVAILABLE OPTIONS - Generating Questions from Pre-Uploaded Documents
-            if choose=="Pre Uploaded":
-                def list_files(folder_path):
-                    return os.listdir(folder_path)
-                
-                def remove_extension(filename):
-                    return os.path.splitext(filename)[0]
-                
-                folder_path="./preuploaded"
+            #tab1, tab2,tab3= st.tabs(["1. Upload Document", "2. Text Analyzer","3. Skill based Questions"])
+            choose=st.radio("Select Options",("Pre Uploaded","Text Analyzer","Topic Based Questions","Terminologies and Keyterms","Learning Outcomes"),horizontal=True)        
+    col_11,col_22 = st.columns([2,1])
+    with col_11:    
+            if choose == "Pre Uploaded":
+                folder_path = "./preuploaded"
+
                 # Get list of files in folder
                 files_list = list_files(folder_path)
-                files_list.sort()        
+
                 # Remove file extension from each filename
                 files_list = [remove_extension(filename) for filename in files_list]
+                files_list.sort()
                 files_list.insert(0, "Select document")
+
                 # Display select box for selecting files
                 selected_file = st.selectbox("Select a file", files_list)
 
-                if selected_file!="Select document":
-                    st.session_state.filename=[]
-                    with open("preuploaded/"+selected_file+'.txt', 'r',encoding='ISO-8859-1') as file:
-            #        Read the content of the file
-                        st.session_state.filename.append(selected_file)
-                        st.session_state.text = file.read()
-
+                if selected_file != "Select document":
+                    st.session_state.filename = []
+                    # Read the content of the selected .pdf file and convert to text
+                    pdf_file_path = os.path.join(folder_path, selected_file + '.pdf')
+                    st.session_state.filename.append(selected_file)
+                    st.session_state.text = pdf_to_text(pdf_file_path)
+                    
                     if st.session_state.text:
-                            
-                            print("Inside Question Generation Bot")
-                            
-                            docsearch = chat.get_cache_vectorstore(st.session_state.text,st.session_state.filename[0])
-                            print("embeddings Done")
-                            col1, col2 = st.columns(2)
-                            with col1:
-                                st.session_state.complexity =  st.selectbox('Complexity mode required?', ['Easy', 'Difficult'],index=0,key="mode")
-                                st.session_state.no_of_questions = st.number_input('No. of  questions to generate*',key="ai_questions",min_value=1,step=None,max_value=30)
-                                st.session_state.mode_of_questions = st.selectbox('Choose answer required?', ['Only Questions', 'Questions with Answers'],index=0,key="quesansw")
-                            with col2:
-                                st.session_state.topic_name = st.text_input('Specific chapter/topic name',placeholder="AI Chapter/Topic Name")
-                                st.session_state.type_of_questions =  st.selectbox('Choose question type', ['Short Answer Questions', 'Long Answer Questions','Multiple Choice Question','Fill in the Blanks','True or False'],index=0)
-                                st.session_state.language =  st.selectbox('Choose response language mode', ['English','English and Hindi'],index=0,key="lang")
-                            
-                            if st.button("Submit"):
-                                if st.session_state.text and st.session_state.mode_of_questions!='Select option' and st.session_state.no_of_questions>0 :
-                                    st.session_state.llm = ConversationChain( llm=ChatOpenAI(
-                                                              model = "gpt-3.5-turbo",
-                                                              temperature=0.7,
-                                                              api_key=openai_api_key2
-                                                              ))
+                        # Display form for input parameters
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            st.session_state.complexity = st.selectbox('Complexity Mode Required?*', ['Easy', 'Difficult'], index=0, key="mode")
+                            st.session_state.no_of_questions = st.number_input('No. of Questions to generate*', key="ai_questions", step=1, max_value=30)
+                            st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Only Questions', 'Questions with Answers'], index=0, key="quesansw")
+                        with col2:
+                            st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name*', placeholder="AI Chapter/Topic Name")
+                            st.session_state.type_of_questions = st.selectbox('Choose Question Type*', ['Short Questions', 'Long Questions', 'MCQ', 'Fill in the Blanks', 'True and False'], index=0)
+                            st.session_state.language = st.selectbox('Choose Response Language Mode*', ['English', 'English and Hindi'], index=0, key="lang")
 
-                                    CHECK_PROMPT = ai_topic_prompt1.format(st.session_state.type_of_questions,
-                                                                                       st.session_state.no_of_questions,
-                                                                                       st.session_state.complexity,
-                                                                                       st.session_state.topic_name,
-                                                                                       st.session_state.text
-                                                                               )
-                                    print("============CHECKING================")
-                                    print("============================")
-                                    print(CHECK_PROMPT)
-                                    print("============================")
-                                    print("============CHECKING================") 
-                                    #st.session_state.mode_of_questions
-                                    formatted_output = st.session_state.llm.predict(input = ai_topic_prompt1.format(st.session_state.type_of_questions,
-                                                                                                                           st.session_state.no_of_questions,
-                                                                                                                           st.session_state.complexity,
-                                                                                                                           st.session_state.topic_name,
-                                                                                                                           st.session_state.text
-                                                                                                                   )
-                                                                                   )
-                                    st.info(formatted_output)
-                                    markdown_to_pdf(formatted_output,'question.pdf')
-                    # Storing the chat
-                    if 'generated' not in st.session_state:
-                        st.session_state['generated'] = []
+                        # Process and generate questions on submit
+                        if st.button("Submit"):
+                            if st.session_state.text and st.session_state.mode_of_questions != 'Select Option':
+                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(
+                                    model="gpt-3.5-turbo",
+                                    temperature=0.7,
+                                    api_key=openai_api_key2 
+                                ))
 
-                    if 'past' not in st.session_state:
-                        st.session_state['past'] = []
+                                formatted_output = st.session_state.llm.predict(input=ai_topic_prompt1.format(
+                                    st.session_state.topic_name,
+                                    st.session_state.no_of_questions,
+                                    st.session_state.text,
+                                    st.session_state.language,
+                                    st.session_state.mode_of_questions,
+                                    st.session_state.type_of_questions,
+                                    st.session_state.complexity,
+                                    st.session_state.no_of_questions
+                                ))
 
-                    # Define a function to clear the input text
-                    def clear_input_text():
-                        global input_text
-                        input_text = ""
+                                st.info(formatted_output)
 
-                    # We will get the user's input by calling the get_text function
-                    def get_text():
-                        global input_text
-                        #input_text = st.chat_input("Ask a question!")
-                        #return input_text
-
-                    user_input = get_text()
-
-                    print('get the input text')
-
-                    # Initialize chat history
-                    if "messages" not in st.session_state:
-                        st.session_state.messages = []
-
-                    # Display chat messages from history on app rerun
-                    for message in st.session_state.messages:
-                        with st.chat_message(message["role"]):
-                            if message['content'] != user_input:
-                                st.markdown(message["content"])
-                    #docsearch = chat.get_cache_vectorstore(st.session_state.text,st.session_state.filename[0])
-                    st.session_state.llm = load_chain(docsearch)
-                    print('chain loaded')
-                    memory = ConversationBufferMemory(
-                    return_messages=True,
-                    )
-                    st.session_state.language_chain = ConversationChain( llm=ChatOpenAI(
-                        model="gpt-3.5-turbo",
-                        temperature=0,
-                        api_key=openai_api_key2
-                        ),memory=memory)
-                    _ = st.session_state.llm({'question':initialise_prompt})
-
-                    # THIS IS NOT ENABLED - this code fragment will not be called - START
-                    if user_input:
-                        english_output,trans_output = chat.answer(user_input)
-
-                        print('get the output')
-                        st.session_state.messages.append({"role": "user", "content": user_input})
-                        # Display user message in chat message container
-                        with st.chat_message("user"):
-                            st.markdown(user_input)  
-
-                        # Display assistant response in chat message container
-                        with st.chat_message("assistant"):
-                            message_placeholder = st.empty()
-                            full_response = ""
-                            for char in english_output:
-                                full_response += char
-                                message_placeholder.markdown(full_response + "▌")
-                            message_placeholder.markdown(full_response)
-
-                            markdown_to_pdf(full_response,'question.pdf')
-                            
-                            word_doc = create_word_doc(full_response)
-                            doc_buffer = download_doc(word_doc)
-                            st.download_button(label="Download Word Document",
-                                            data=doc_buffer, 
-                                            file_name="generated_document.docx",
-                                            mime="application/octet-stream",
-                                            key='worddownload'
-                                                )
-                        st.session_state.messages.append({"role": "assistant", "content": english_output})
-
-                        # Display assistant response in chat message container
-
-                        if trans_output!="":
-                            with st.chat_message("assistant"):
-                                message_placeholder = st.empty()
-                                full_response = ""
-                                for char in trans_output:
-                                    full_response += char
-                                    message_placeholder.markdown(full_response + "▌")
-                                message_placeholder.markdown(full_response)
-
-                                markdown_to_pdf(full_response,'question.pdf')
-                                
-                                word_doc = create_word_doc(full_response)
+                                # Convert formatted output to PDF and Word document
+                                markdown_to_pdf(formatted_output, 'question.pdf')
+                                word_doc = create_word_doc(formatted_output)
                                 doc_buffer = download_doc(word_doc)
-                                st.download_button(label="Download Word Document", 
-                                                data=doc_buffer, 
-                                                file_name="generated_document.docx", 
-                                                mime="application/octet-stream",
-                                                key='worddownload1')
 
-                            st.session_state.messages.append({"role": "assistant", "content": full_response})
-
-                    # THIS IS NOT ENABLED - this code fragment will not be called - END
-
-            
+                                # Download buttons for PDF and Word document
+                                st.download_button(
+                                    label="Download Word Document",
+                                    data=doc_buffer,
+                                    file_name="generated_document.docx",
+                                    mime="application/octet-stream",
+                                    key='worddownload'
+                                )            
+            from io import StringIO
+                                    
             if choose=="Terminologies and Keyterms":
                 def list_files(folder_path):
                     return os.listdir(folder_path)
-                
                 def remove_extension(filename):
                     return os.path.splitext(filename)[0]
-                
-                folder_path="./preuploaded"
-                # Get list of files in folder
+                folder_path = "./preuploaded"
+                # Get list of files in the folder
                 files_list = list_files(folder_path)
-                files_list.sort()        
                 # Remove file extension from each filename
                 files_list = [remove_extension(filename) for filename in files_list]
                 files_list.insert(0, "Select document")
                 # Display select box for selecting files
                 selected_file = st.selectbox("Select a file", files_list)
+                def mcq_response(result: str, persist_directory: str = constants.PERSIST_DIR) -> str:
+                    formatted_response = st.session_state.mcq_chain.predict(input=mcq_test_prompt.format(result))
+                    st.write(formatted_response)
+                    return formatted_response
 
-                if selected_file!="Select document":
-                    st.session_state.filename=[]
-                    with open("preuploaded/"+selected_file+'.txt', 'r',encoding='ISO-8859-1') as file:
-            #        Read the content of the file
-                        st.session_state.filename.append(selected_file)
-                        text = file.read()
-                    #     Read the content of the file
-                        st.session_state.mcq_chain = ConversationChain( llm=ChatOpenAI(
+                if selected_file != "Select document":
+                    st.session_state.filename = []
+                    #Open and read the PDF file
+                    with open(os.path.join(folder_path, selected_file + '.pdf'), 'rb') as file:
+                        reader = PdfReader(file)
+                        text = StringIO()
+                        for page in reader.pages:
+                            text.write(page.extract_text())
+                        text = text.getvalue()
+                    st.session_state.filename.append(selected_file)
+                    #Initialize the conversation chain with ChatOpenAI
+                    st.session_state.mcq_chain = ConversationChain(llm=ChatOpenAI(
                         model="gpt-3.5-turbo",
                         temperature=0.7,
                         api_key=openai_api_key2
-                        ))
-                        outputs = chat.mcq_response(text)
-                        #st.write(st.session_state.outputs)
-                        #st.write(outputs)
-                        markdown_to_pdf(outputs,'question.pdf')
-                        
-                        
-                        word_doc = create_word_doc(outputs)
-                        doc_buffer = download_doc(word_doc)
-                        st.download_button(label="Download Word Document", 
-                                        data=doc_buffer, 
-                                        file_name="generated_document.docx", 
-                                        mime="application/octet-stream",
-                                        key='worddownload3')
-            
-            
-
+                    ))
+                    #Generate questions and answers from the text
+                    outputs = mcq_response(text)
+                    
+                    #Convert the outputs to a markdown PDF
+                    markdown_to_pdf(outputs, 'question.pdf')
+                    
+                    #Create a Word document from the outputs
+                    word_doc = create_word_doc(outputs)
+                    doc_buffer = download_doc(word_doc)
+                    
+                    #Provide a download button for the Word document
+                    st.download_button(label="Download Word Document", 
+                                    data=doc_buffer, 
+                                    file_name="generated_document.docx", 
+                                    mime="application/octet-stream",
+                                    key='worddownload3')
             if choose=="Learning Outcomes":
                 def list_files(folder_path):
                     return os.listdir(folder_path)
@@ -524,38 +430,54 @@ if st.session_state.teach=='Teachers':
                 def remove_extension(filename):
                     return os.path.splitext(filename)[0]
                 
-                folder_path="./preuploaded"
-                # Get list of files in folder
+                folder_path = "./preuploaded"
+# Get list of files in the folder
                 files_list = list_files(folder_path)
-                files_list.sort()        
                 # Remove file extension from each filename
                 files_list = [remove_extension(filename) for filename in files_list]
                 files_list.insert(0, "Select document")
                 # Display select box for selecting files
                 selected_file = st.selectbox("Select a file", files_list)
 
-                if selected_file!="Select document":
-                    st.session_state.filename=[]
-                    with open("preuploaded/"+selected_file+'.txt', 'r',encoding='ISO-8859-1') as file:
-            #        Read the content of the file
-                        st.session_state.filename.append(selected_file)
-                        text = file.read()
-                        st.session_state.learn_outcome_chain = ConversationChain(llm=ChatOpenAI(
-                        model = "gpt-3.5-turbo",
-                        temperature=0.7,api_key=openai_api_key2
-                        ))
-                        outputs = chat.learn_outcome_term(text)
-                        #st.write(outputs)
-                        markdown_to_pdf(outputs,'question.pdf')
-                        
-                        
-                        word_doc = create_word_doc(outputs)
-                        doc_buffer = download_doc(word_doc)
-                        st.download_button(label="Download Word Document", 
-                                        data=doc_buffer, 
-                                        file_name="generated_document.docx", 
-                                        mime="application/octet-stream",
-                                        key='worddownload3')
+                # Function to generate learning outcomes
+                def learn_outcome_term(result: str, persist_directory: str = constants.PERSIST_DIR) -> str:
+                    formatted_response = st.session_state.learn_outcome_chain.predict(input=learn_outcome_prompt.format(result))
+                    st.write(formatted_response)
+                    return formatted_response
+
+                if selected_file != "Select document":
+                    st.session_state.filename = []
+                    # Open and read the PDF file
+                    with open(os.path.join(folder_path, selected_file + '.pdf'), 'rb') as file:
+                        reader = PdfReader(file)
+                        text = StringIO()
+                        for page in reader.pages:
+                            text.write(page.extract_text())
+                        text = text.getvalue()
+                    
+                    st.session_state.filename.append(selected_file)
+                    # Initialize the conversation chain with ChatOpenAI
+                    st.session_state.learn_outcome_chain = ConversationChain(llm=ChatOpenAI(
+                        model="gpt-3.5-turbo",
+                        temperature=0.7,
+                        api_key=openai_api_key2
+                    ))
+                    # Generate learning outcomes from the text
+                    outputs = learn_outcome_term(text)
+                    
+                    # Convert the outputs to a markdown PDF
+                    markdown_to_pdf(outputs, 'question.pdf')
+                    
+                    # Create a Word document from the outputs
+                    word_doc = create_word_doc(outputs)
+                    doc_buffer = download_doc(word_doc)
+                    
+                    # Provide a download button for the Word document
+                    st.download_button(label="Download Word Document", 
+                                    data=doc_buffer, 
+                                    file_name="generated_document.docx", 
+                                    mime="application/octet-stream",
+                                    key='worddownload3')
 
 
             if choose=="Text Analyzer":
@@ -579,7 +501,7 @@ if st.session_state.teach=='Teachers':
                     with col2:
                         st.session_state.type_of_questions =  st.selectbox('Choose Question Type*', ['Select Option','Short Questions','MCQ','Fill in the Blanks','True and False'],index=0,key="ai_questions_no_s")
                     if st.button("Submit"):
-                       if st.session_state.text and st.session_state.mode_of_questions!='Select Option' :
+                       if st.session_state.text and st.session_state.no_of_questions>0:
                             st.session_state.llm = ConversationChain( llm=ChatOpenAI(
                             model="gpt-3.5-turbo",
                             temperature=0.7,
@@ -608,8 +530,9 @@ if st.session_state.teach=='Teachers':
                 #openai.api_type = ""
                 #openai.api_version = ""
                 #openai.api_base = ""  
-                
-                openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
+                #openai.api_key = 
+                #OPENAI_API_KEY2 = 
+                #openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 
                 def load_image(img):
                     im = Image.open(img)
@@ -626,7 +549,7 @@ if st.session_state.teach=='Teachers':
 
                 def generate_questions(image_base64):
                     response = c.chat.completions.create(
-                      model="gpt-4o",
+                      model="gpt-3.5-turbo",
                       messages=[
                           {
                             "role": "user",
@@ -722,8 +645,7 @@ if st.session_state.teach=='Teachers':
                       file_name="generated_document.docx", 
                       mime="application/octet-stream",
                       key='worddownload3')
-
-# MAIN CONTENT PART - Student Module Code
+                    
 if st.session_state.teach=='Students':
     choose=st.radio("Select Options",("Ask a Query","Text Analyzer"),horizontal=True)
 
@@ -753,7 +675,7 @@ if st.session_state.teach=='Students':
                             st.session_state.llm = ConversationChain( llm=ChatOpenAI(
                             model_name="gpt-3.5-turbo",
                             temperature=0.7,
-                            api_key=openai_api_key2
+                            api_key=openai_api_key2 
                             )) 
                             formatted_output = st.session_state.llm.predict(input = ai_prompt.format(st.session_state.no_of_questions,
                                                                             st.session_state.mode_of_questions,
@@ -937,10 +859,11 @@ if st.session_state.teach=='Students':
                                     st.success(f'Correct! {explanations[question_num]}')
                                 else:
                                     st.error(f'Incorrect :( \n\n The correct answer was: {answer_choices[answers[question_num][0]]}\n\n {explanations[question_num]}')
-    
 
 
 # Function to split text into smaller chunks
+
+
     openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 
     if 'history' not in st.session_state:
@@ -969,11 +892,11 @@ if st.session_state.teach=='Students':
                 texts = text_splitter.split_text(raw_text)
                 st.write(f"PDF loaded and split into {len(texts)} chunks.")
 
-                embeddings = OpenAIEmbeddings(api_key=openai_api_key2)
+                embeddings = OpenAIEmbeddings(api_key=openai_api_key2 )
                 document_search = FAISS.from_texts(texts, embeddings)
                 st.write("Document embeddings created and stored in FAISS index.")
 
-                chain = load_qa_chain(OpenAI(api_key=openai_api_key2), chain_type="stuff")
+                chain = load_qa_chain(OpenAI(api_key=openai_api_key2 ), chain_type="stuff")
 
                 query = st.chat_input("Ask a question about the PDF:")
                 st.write(query)
@@ -1034,7 +957,8 @@ if st.session_state.teach=='Students':
                     st.write(f"**Q{i+1} (Hindi):** {question_hindi}")
                     st.write(f"**A{i+1} (Hindi):** {answer_hindi}")
 
-
+# Add a download button to download the history as a Word document
+    
     if choose=="Terminologies and Keyterms":
         st.write('Note: File name should contain subject and class like maths_class10.pdf/.docx')
         files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
@@ -1059,8 +983,7 @@ if st.session_state.teach=='Students':
                         st.session_state.text = file.read()
                         st.session_state.mcq_chain = ConversationChain( llm=ChatOpenAI(
                         model="gpt-3.5-turbo",
-                        temperature=0.7,
-                        api_key=openai_api_key2
+                        temperature=0.7
                         ))
                         outputs = chat.mcq_response(st.session_state.text)
                         st.write(outputs)
@@ -1073,105 +996,59 @@ if st.session_state.teach=='Students':
                                         file_name="generated_document.docx", 
                                         mime="application/octet-stream",
                                         key='worddownload3')
+if st.session_state.teach == 'Administration':
+    choose = st.radio("Select Options", ("Add Document", "Download Document", "Delete Document", "View Documents"), horizontal=True)
 
-
-# MAIN CONTENT PART - Administration Module Code
-if st.session_state.teach=='Administration':
-    choose=st.radio("Select Options",("Add Document","Download Document","Delete Document","View Documents","Add Word to Dictionary"),horizontal=True)
-
-    if choose=="Add Document":
-        files = st.file_uploader('Upload Books,Notes,Question Banks ', accept_multiple_files=True,type=['pdf', 'docx'])
+    if choose == "Add Document":
+        files = st.file_uploader('Upload Books, Notes, Question Banks', accept_multiple_files=True, type=['pdf'])
         if files:
-            file_extension = files[0].name.split(".")[-1]
-            if file_extension == "pdf":
-                path = files[0].read()
-                name=files[0].name[:-4]
-                # Check if the file exists
-                if not os.path.exists("preuploaded/"+name+".txt"):
-                    print("File Not Exist")
-                    with open("preuploaded/"+name+'.txt', 'w',encoding='utf-8') as file:
-                    # Open a file in write mode (creates a new file if it doesn't exist)
-                        st.session_state.text= chat.load_pdf_text(files[0],name)
-                        file.write(st.session_state.text)
+            for uploaded_file in files:
+                file_path = os.path.join("preuploaded", uploaded_file.name)
+                if not os.path.exists(file_path):
+                    with open(file_path, 'wb') as file:
+                        file.write(uploaded_file.getbuffer())
+                    st.success(f"{uploaded_file.name} uploaded successfully.")
                 else:
-                    st.write("Document Exist")
+                    st.warning(f"{uploaded_file.name} already exists.")
 
-    if choose=="Download Document":
-        # Example usage
+    if choose == "Download Document":
         folder_path = "./preuploaded"
-
-        files = os.listdir(folder_path)
-                    
-        # Filter out only text files
-        text_files = [file for file in files if file.endswith(".txt")]
-
-        text_files.insert(0, "Select document")
-
-        # Create a selectbox with multi-selection enabled
-        selected_file = st.selectbox("Select Document", text_files)
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        pdf_files.insert(0, "Select document")
+        selected_file = st.selectbox("Select Document", pdf_files)
 
         if selected_file != "Select document":
-            # Display download button for the selected file
-            st.write("Download selected file:")
             with open(os.path.join(folder_path, selected_file), "rb") as file:
-                st.download_button(label="Download", data=file, file_name=selected_file, mime="text/plain")
+                st.download_button(label="Download", data=file, file_name=selected_file, mime="application/pdf")
         else:
-            st.write("Select Document to Download")
+            st.info("Select a document to download.")
 
-
-    if choose=="View Documents":
-        def view_text_files(folder_path):
-            # Get a list of all files in the folder
-            files = os.listdir(folder_path)
-            
-            # Filter out only text files
-            text_files = [file for file in files if file.endswith(".txt")]
-
-            if text_files:
-                st.write("Documents in the folder:")
-                for text_file in text_files:
-                    st.write(text_file)
-            else:
-                st.write("No Documents found in the folder.")
-
-        # Example usage
+    if choose == "View Documents":
         folder_path = "./preuploaded"
-        view_text_files(folder_path)
-
-    if choose=="Delete Document":
-        def remove_text_file(folder_path, file_name):
-            file_path = os.path.join(folder_path, file_name)
-            if os.path.exists(file_path):
-                os.remove(file_path)
-                st.write(f"{file_name} has been successfully removed")
-            else:
-                st.write(f"File {file_name} does not exist in {folder_path}")
-
-        # Example usage
-        folder_path = "./preuploaded"
-
-        files = os.listdir(folder_path)
-            
-            # Filter out only text files
-        text_files = [file for file in files if file.endswith(".txt")]
-
-        text_files.insert(0, "Select document")
-
-        # Create a selectbox with multi-selection enabled
-        selected_file = st.selectbox("Select Document", text_files)
-
-        # Display the selected files
-        if selected_file!="Select document":
-            remove_text_file(folder_path, selected_file)
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        if pdf_files:
+            st.write("Documents in the folder:")
+            for pdf_file in pdf_files:
+                st.write(pdf_file)
         else:
-            st.write("Select Document to Delete")
+            st.info("No documents found in the folder.")
+
+    if choose == "Delete Document":
+        folder_path = "./preuploaded"
+        pdf_files = [file for file in os.listdir(folder_path) if file.endswith(".pdf")]
+        pdf_files.insert(0, "Select document")
+        selected_file = st.selectbox("Select Document", pdf_files)
+
+        if selected_file != "Select document":
+            os.remove(os.path.join(folder_path, selected_file))
+            st.success(f"{selected_file} has been successfully removed.")
+        else:
+            st.info("Select a document to delete.")       
     if choose=="Add Word to Dictionary":
         if st.button("View Dictionary"):
             with open('dictionary.json','r') as f:
-                    
                     existing_dictionary = json.load(f)
-
-            lowercase_dict = {value.lower(): key for key, value in existing_dictionary.items()}
+            lowercase_dict = {key.lower(): value for key, value in existing_dictionary.items() if isinstance(value, str)}
             st.write(lowercase_dict)
 
         # Input field for searching a word
