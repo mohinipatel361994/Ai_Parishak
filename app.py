@@ -43,7 +43,7 @@ import os
 import time
 #from docxlatex import Document
 # from PIL import Image
-c = OpenAI()
+#c = OpenAI()
 
 st.set_page_config(layout='wide')
 
