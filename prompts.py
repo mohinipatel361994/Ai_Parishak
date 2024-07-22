@@ -80,14 +80,24 @@ latex_prompt="""format the response {} into python list.
                 Remember to keep all the information as it is
              """
 
+#ai_prompt="""Based on the context, generate only questions considering following constraints,
+#             1. number of questions  - {}
+#             2. mode of questions - {}
+#             3. type of questions - {} 
+#             Generate questions according to Madhya Pradesh Board Education School
+#             Response is to be generated in both english and Hindi,first generate in english then in Hindi
+#             and if you are generating Answers also, Answer start in a new line and Generate questions according to Madhya Pradesh School Education Board
+#             generate the all types of question and answer,and please insure the question and answer based on topic or text.
+#             Remember to keep all the information as it is. Response - {}
+#"""
+
 ai_prompt="""Based on the context, generate only questions considering following constraints,
              1. number of questions  - {}
              2. mode of questions - {}
              3. type of questions - {} 
-             Generate questions according to Madhya Pradesh Board Education School
-             Response is to be generated in both english and Hindi,first generate in english then in Hindi
-             and if you are generating Answers also, Answer start in a new line and Generate questions according to Madhya Pradesh School Education Board
-             generate the all types of question and answer,and please insure the question and answer based on topic or text.
+             Generate questions in both English and Hindi,first generate in English then in Hindi. The generated questions must be numbered seperately for English and Hindi.
+             If you are generating Answers also, answer start from a new line.
+             Generate all types of question and answer,and please insure the question and answer based on topic or text.
              Remember to keep all the information as it is. Response - {}
 """
 
