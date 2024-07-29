@@ -1078,7 +1078,7 @@ footer = """
         bottom: 0;
         width: 100%;
         background-color: #00008B;
-        color: black;
+        color: white;
         text-align: center;
         padding: 10px;
         
