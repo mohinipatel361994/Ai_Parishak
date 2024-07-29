@@ -1077,7 +1077,7 @@ footer = """
         top:90px;
         bottom: 0;
         width: 100%;
-        background-color: #ACD2FF;
+        background-color: #00008B;
         color: black;
         text-align: center;
         padding: 10px;
@@ -1090,7 +1090,7 @@ footer = """
     }
     .footer p
     {
-     margin-top:10px;
+     margin-top:13px;
      font-style: italic;
      font-size: 14px;
     }
