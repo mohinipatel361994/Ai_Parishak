@@ -77,6 +77,39 @@ openai_api_key2 = st.secrets["secret_section"]["OPENAI_API_KEY"]
 #openai_api_key = os.getenv('OPENAI_API_KEY')
 TEMP_MD_FILE = r"question.pdf"
 TEMP_PDF_FILE = "__temp.pdf"
+footer = """
+    <style>
+    .footer {
+        position: absolute;
+        left: 0;
+        top: 940px;
+        bottom: 0;
+        width: 100%;
+        background-color: #ACD2FF;
+        color: black;
+        text-align: center;
+        padding: 10px;
+        
+        font-weight: bold;
+        z-index: 1000;  /* Ensure it is on top of other elements */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .footer p
+    {
+     margin-top:10px;
+     font-style: italic;
+     font-size: 14px;
+    }
+    
+    </style>
+    <div class="footer">
+        <p>The responses provided on this website are AI-generated. User discretion is advised.</p>
+    </div>
+"""
+
+st.markdown(footer, unsafe_allow_html=True)
 
 
 def get_base64(bin_file):
