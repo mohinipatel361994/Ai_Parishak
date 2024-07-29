@@ -115,7 +115,7 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 
 ai_topic_prompt1 = """
                     You are provided with a document containing text related to a specific topic. 
-                    Your task is to generate exactly the specified number of questions based on the given constraints. 
+                    Response is to be generated in both english and Hindi,first generate in english then in Hindi,The generated questions must be numbered seperately for English and Hindi.
                     Ensure that all questions and answers, if required, are derived solely from the provided text. 
                     Follow these guidelines strictly:
 
