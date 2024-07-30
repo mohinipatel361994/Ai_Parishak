@@ -1074,30 +1074,28 @@ footer = """
     .footer {
         position: absolute;
         left: 0;
-        top:90px;
+        top:80px;
         bottom: 0;
         width: 100%;
-        background-color: #00008B;
+        background-color: #0047AB;
         color: white;
         text-align: center;
-        padding: 10px;
-        
+        padding: 15px;
         font-weight: bold;
         z-index: 1000;  /* Ensure it is on top of other elements */
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     }
-    .footer p
-    {
-     margin-top:13px;
-     font-style: italic;
-     font-size: 14px;
+    .footer p {
+        font-style: italic;
+        font-size: 14px;
+        margin: 0;
     }
-    
     </style>
     <div class="footer">
-        <p>The responses provided on this website are AI-generated. User discretion is advised.</p>
+        <p style="text-align: left; flex: 1;">Copyright © 2024 MPSeDC. All rights reserved.</p>
+        <p style="text-align: right; flex: 1;">The responses provided on this website are AI-generated. User discretion is advised.</p>
     </div>
 """
 
