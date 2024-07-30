@@ -222,7 +222,7 @@ with st.container():
         st.markdown("###### AI Based Question Generation Assistance")
     with col3:
         l = Image.open('assests/28072020125926mpsedclogo.png')
-        re = l.resize((165, 155))  # Corrected the resize method call
+        re = l.resize((165, 127))  # Corrected the resize method call
         st.image(re)
          
         
@@ -1077,7 +1077,7 @@ footer = """
         top:80px;
         bottom: 0;
         width: 100%;
-        background-color: #0047AB;
+        background-color: #002F74;
         color: white;
         text-align: center;
         padding: 15px;
