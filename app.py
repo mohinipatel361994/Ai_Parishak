@@ -1071,31 +1071,43 @@ if st.session_state.teach == 'Administration':
                     
 footer = """
     <style>
+    body {
+        margin: 0;
+        padding-top: 70px;  /* Add padding to prevent content from being hidden behind the footer */
+    }
     .footer {
         position: absolute;
+        top: 80px;
         left: 0;
-        top:80px;
-        bottom: 0;
         width: 100%;
         background-color: #002F74;
         color: white;
         text-align: center;
-        padding: 15px;
+        padding: 5px;
         font-weight: bold;
         z-index: 1000;  /* Ensure it is on top of other elements */
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
     }
     .footer p {
         font-style: italic;
         font-size: 14px;
         margin: 0;
+        flex: 1 1 50%;  /* Flex-grow, flex-shrink, flex-basis */
+    }
+    @media (max-width: 600px) {
+        .footer p {
+            flex-basis: 100%;
+            text-align: center;
+            padding-top: 10px;
+        }
     }
     </style>
     <div class="footer">
-        <p style="text-align: left; flex: 1;">Copyright © 2024 MPSeDC. All rights reserved.</p>
-        <p style="text-align: right; flex: 1;">The responses provided on this website are AI-generated. User discretion is advised.</p>
+        <p style="text-align: left;">Copyright © 2024 MPSeDC. All rights reserved.</p>
+        <p style="text-align: right;">The responses provided on this website are AI-generated. User discretion is advised.</p>
     </div>
 """
 
