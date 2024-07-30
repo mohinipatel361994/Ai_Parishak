@@ -315,7 +315,7 @@ if st.session_state.teach == 'Teachers':
     if st.session_state.quesai:
         st.session_state.selected_option = st.radio(
             "Select Options",
-            ("Pre Uploaded", "Text Analyzer", "Skill Based Questions", "Terminologies and Keyterms", "Learning Outcomes"),
+            ("Topic Based Questions", "Text Analyzer","Pre Uploaded" , "Terminologies and Keyterms", "Learning Outcomes"),
             horizontal=True,
             index=0,
             key='option'
@@ -562,7 +562,7 @@ if st.session_state.teach == 'Teachers':
                     st.info("Please upload an image file.")
    
                 
-            if choose=="Skill Based Questions":
+            if choose=="Topic Based Questions":
                 
                 col1, col2 = st.columns(2)
                 with col1:
