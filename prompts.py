@@ -115,7 +115,7 @@ ai_topic_prompt="""Based on the context, generate only questions considering fol
 
 ai_topic_prompt1 = """
                     You are provided with a document containing text related to a specific topic. 
-                    Response is to be generated in both english and Hindi,first generate in english then in Hindi,The generated questions must be numbered seperately for English and Hindi.
+                    Response is to be generated in both English and Hindi, first generate in English then in Hindi. 
                     Ensure that all questions and answers, if required, are derived solely from the provided text. 
                     Follow these guidelines strictly:
 
@@ -139,15 +139,43 @@ ai_topic_prompt1 = """
                     - For multiple-choice questions, provide 4 options, followed by the correct answer.
 
                     ### Example Format:
-                    **Question 1 (English):** [Your question here]
-                    **Answer 1 (English):** [Your answer here]
+                    **Question 1:** [Your question here]
+                    **a.** [Option 1]
+                    **b.** [Option 2]
+                    **c.** [Option 3]
+                    **d.** [Option 4]
+                    **Answer 1:** [Correct answer here]
 
-                    **Question 1 (Hindi):** [Your question here]
-                    **Answer 1 (Hindi):** [Your answer here]
+                    **Question 1:** [Your question here]
+                    **a.** [Option 1]
+                    **b.** [Option 2]
+                    **c.** [Option 3]
+                    **d.** [Option 4]
+                    **Answer 1:** [Correct answer here]
+
+                    **Fill in the Blanks Example:**
+
+                    **Question 1:** The ______ is black.
+                    **Answer 1:** The cat is black.
+
+                    **Question 1:** ______ काली है।
+                    **Answer 1:** बिल्ली काली है।
+
+                    **True/False Example:**
+                    **Question 1 (English):**
+                    [Your statement here]
+
+                    **Answer 1 (English):**
+                    [True/False] (if required)
+
+                    **Question 1 (Hindi):**
+                    [Your statement here]
+
+                    **Answer 1 (Hindi):**
+                    [True/False] (if required)
 
                     Generate exactly {} questions in the specified language(s) based on the above instructions.
-                    Answer should be start in the new line only.
-"""
+                  """
 
 ai_topic_prompt_questions= """ Based on the context, extract only questions
                                Remember to keep all the information as it is. Response - {}
