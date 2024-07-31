@@ -353,7 +353,7 @@ if st.session_state.teach == 'Teachers':
 
                         if st.button("Submit"):
                             if st.session_state.text and st.session_state.mode_of_questions != 'Select Option':
-                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7,api_key=openai_api_key2))
+                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o-mini", temperature=0.7,api_key=openai_api_key2))
                                 formatted_output = st.session_state.llm.predict(input=ai_topic_prompt1.format(
                                     st.session_state.topic_name,
                                     st.session_state.no_of_questions,
@@ -399,7 +399,7 @@ if st.session_state.teach == 'Teachers':
                             text.write(page.extract_text())
                         text = text.getvalue()
                     st.session_state.filename.append(selected_file)
-                    st.session_state.mcq_chain = ConversationChain(llm=ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7,api_key=openai_api_key2))
+                    st.session_state.mcq_chain = ConversationChain(llm=ChatOpenAI(model="gpt-4o-mini", temperature=0.7,api_key=openai_api_key2))
                     outputs = mcq_response(text)
                     markdown_to_pdf(outputs, 'question.pdf')
                     word_doc = create_word_doc(outputs)
@@ -427,7 +427,7 @@ if st.session_state.teach == 'Teachers':
                             text.write(page.extract_text())
                         text = text.getvalue()
                     st.session_state.filename.append(selected_file)
-                    st.session_state.learn_outcome_chain = ConversationChain(llm=ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7,api_key=openai_api_key2))
+                    st.session_state.learn_outcome_chain = ConversationChain(llm=ChatOpenAI(model="gpt-4o-mini", temperature=0.7,api_key=openai_api_key2))
                     outputs = learn_outcome_term(text)
                     markdown_to_pdf(outputs, 'question.pdf')
                     word_doc = create_word_doc(outputs)
@@ -576,7 +576,7 @@ if st.session_state.teach == 'Teachers':
                 if st.button("Submit"):
                    if st.session_state.topic_name and st.session_state.mode_of_questions!='Select Option' :
                       st.session_state.llm = ConversationChain( llm=ChatOpenAI(
-                                                              model = "gpt-3.5-turbo",
+                                                              model = "gpt-4o-mini",
                                                               temperature=0.7,
                                                               api_key=openai_api_key2
                                                               ))
@@ -627,7 +627,7 @@ if st.session_state.teach=='Students':
                     if st.button("Submit"):
                         if st.session_state.text and st.session_state.mode_of_questions!='Select Option' :
                             st.session_state.llm = ConversationChain( llm=ChatOpenAI(
-                            model_name="gpt-3.5-turbo",
+                            model_name="gpt-4o-mini",
                             temperature=0.7,
                             api_key=openai_api_key2
                             )) 
