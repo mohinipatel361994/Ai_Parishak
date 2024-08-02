@@ -457,7 +457,7 @@ if st.session_state.teach == 'Teachers':
                     if st.button("Submit"):
                        if st.session_state.text and st.session_state.no_of_questions>0:
                             st.session_state.llm = ConversationChain( llm=ChatOpenAI(
-                            model="gpt-3.5-turbo",
+                            model="gpt-4o-mini",
                             temperature=0.7,
                             api_key=openai_api_key2
                             )) 
