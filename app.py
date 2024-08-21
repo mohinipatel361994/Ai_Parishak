@@ -606,7 +606,9 @@ if st.session_state.teach == 'Teachers':
                     
 if st.session_state.teach=='Students':
     choose=st.radio("Select Options",("Pre Uploaded","Ask a Query","Text Analyzer"),horizontal=True)
-    if choose == "Pre Uploaded":
+    col_11, col_22 = st.columns([2, 1])
+        with col_11:
+            if choose == "Pre Uploaded":
                 folder_path = "./preuploaded"
                 files_list = list_files(folder_path)
                 files_list = [remove_extension(filename) for filename in files_list]
@@ -634,7 +636,7 @@ if st.session_state.teach=='Students':
 
                         if st.button("Submit"):
                             if st.session_state.text and st.session_state.mode_of_questions != 'Select Option':
-                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o", temperature=0.7))
+                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o", temperature=0.7,api_key=openai_api_key2))
                                 formatted_output = st.session_state.llm.predict(input=ai_topic_prompt1.format(
                                     st.session_state.topic_name,
                                     st.session_state.no_of_questions,
@@ -659,8 +661,6 @@ if st.session_state.teach=='Students':
                                     key='worddownload'
                                 )
 
-
-        
 
     if choose=="Text Analyzer":
                 
