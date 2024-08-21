@@ -307,7 +307,7 @@ if 'quesai' not in st.session_state:
 if 'selected_file' not in st.session_state:
     st.session_state.selected_file = "Select document"
    
-st.sidebar.header("Select Category")
+st.sidebar.header("Select Module")
 st.session_state.teach = st.sidebar.selectbox(
     "",
     ('Teachers', 'Students', 'Administration'),
@@ -351,7 +351,7 @@ if st.session_state.teach == 'Teachers':
                             st.session_state.no_of_questions = st.number_input('No. of Questions to generate*', key="ai_questions", step=1, max_value=30)
                             st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Only Questions', 'Questions with Answers'], index=0, key="quesansw")
                         with col2:
-                            st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name', placeholder="AI Chapter/Topic Name")
+                            #st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name', placeholder="AI Chapter/Topic Name")
                             st.session_state.type_of_questions = st.selectbox('Choose Question Type*', ['Short Questions', 'Long Questions', 'MCQ', 'Fill in the Blanks', 'True and False'], index=0)
                             st.session_state.language = st.selectbox('Choose Response Language Mode*', ['English', 'English and Hindi'], index=0, key="lang")
 
@@ -605,7 +605,62 @@ if st.session_state.teach == 'Teachers':
                       key='worddownload3')
                     
 if st.session_state.teach=='Students':
-    choose=st.radio("Select Options",("Ask a Query","Text Analyzer"),horizontal=True)
+    choose=st.radio("Select Options",("Pre Uploaded","Ask a Query","Text Analyzer"),horizontal=True)
+    if choose == "Pre Uploaded":
+                folder_path = "./preuploaded"
+                files_list = list_files(folder_path)
+                files_list = [remove_extension(filename) for filename in files_list]
+                files_list.sort()
+                files_list.insert(0, "Select document")
+
+                selected_file = st.selectbox("Select a file", files_list, index=0, key='pre_uploaded_selected_file')
+
+                if selected_file != "Select document":
+                    st.session_state.filename = []
+                    pdf_file_path = os.path.join(folder_path, selected_file + '.pdf')
+                    st.session_state.filename.append(selected_file)
+                    st.session_state.text = pdf_to_text(pdf_file_path)
+
+                    if st.session_state.text:
+                        col1, col2 = st.columns(2)
+                        with col1:
+                            st.session_state.complexity = st.selectbox('Complexity Mode Required?*', ['Easy', 'Difficult'], index=0, key="mode")
+                            st.session_state.no_of_questions = st.number_input('No. of Questions to generate*', key="ai_questions", step=1, max_value=30)
+                            st.session_state.mode_of_questions = st.selectbox('Choose Answer Required/Not*', ['Only Questions', 'Questions with Answers'], index=0, key="quesansw")
+                        with col2:
+                            #st.session_state.topic_name = st.text_input('Specific Chapter/Topic Name', placeholder="AI Chapter/Topic Name")
+                            st.session_state.type_of_questions = st.selectbox('Choose Question Type*', ['Short Questions', 'Long Questions', 'MCQ', 'Fill in the Blanks', 'True and False'], index=0)
+                            st.session_state.language = st.selectbox('Choose Response Language Mode*', ['English', 'English and Hindi'], index=0, key="lang")
+
+                        if st.button("Submit"):
+                            if st.session_state.text and st.session_state.mode_of_questions != 'Select Option':
+                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o", temperature=0.7))
+                                formatted_output = st.session_state.llm.predict(input=ai_topic_prompt1.format(
+                                    st.session_state.topic_name,
+                                    st.session_state.no_of_questions,
+                                    st.session_state.text,
+                                    st.session_state.language,
+                                    st.session_state.mode_of_questions,
+                                    st.session_state.type_of_questions,
+                                    st.session_state.complexity,
+                                    st.session_state.no_of_questions
+                                ))
+
+                                st.info(formatted_output)
+                                markdown_to_pdf(formatted_output, 'question.pdf')
+                                word_doc = create_word_doc(formatted_output)
+                                doc_buffer = download_doc(word_doc)
+
+                                st.download_button(
+                                    label="Download Word Document",
+                                    data=doc_buffer,
+                                    file_name="generated_document.docx",
+                                    mime="application/octet-stream",
+                                    key='worddownload'
+                                )
+
+
+        
 
     if choose=="Text Analyzer":
                 
