@@ -357,7 +357,7 @@ if st.session_state.teach == 'Teachers':
 
                         if st.button("Submit"):
                             if st.session_state.text and st.session_state.mode_of_questions != 'Select Option':
-                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o-mini", temperature=0.7,api_key=openai_api_key2))
+                                st.session_state.llm = ConversationChain(llm=ChatOpenAI(model="gpt-4o", temperature=0.7,api_key=openai_api_key2))
                                 formatted_output = st.session_state.llm.predict(input=ai_topic_prompt1.format(
                                     st.session_state.topic_name,
                                     st.session_state.no_of_questions,
