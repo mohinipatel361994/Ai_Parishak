@@ -307,8 +307,12 @@ if 'quesai' not in st.session_state:
 if 'selected_file' not in st.session_state:
     st.session_state.selected_file = "Select document"
    
-st.session_state.teach = st.radio("Select Option",(
-    'Teachers','Students','Administration'),key='airadio1')
+st.sidebar.header("Select Category")
+st.session_state.teach = st.sidebar.selectbox(
+    "",
+    ('Teachers', 'Students', 'Administration'),
+    key='airadio1'
+)
 if st.session_state.teach == 'Teachers':
     st.session_state.quesai = st.title("Generate Question and Answer")
 
