@@ -606,9 +606,7 @@ if st.session_state.teach == 'Teachers':
                     
 if st.session_state.teach=='Students':
     choose=st.radio("Select Options",("Pre Uploaded","Ask a Query","Text Analyzer"),horizontal=True)
-    col_11, col_22 = st.columns([2, 1])
-        with col_11:
-            if choose == "Pre Uploaded":
+    if choose == "Pre Uploaded":
                 folder_path = "./preuploaded"
                 files_list = list_files(folder_path)
                 files_list = [remove_extension(filename) for filename in files_list]
@@ -660,7 +658,7 @@ if st.session_state.teach=='Students':
                                     mime="application/octet-stream",
                                     key='worddownload'
                                 )
-
+            
 
     if choose=="Text Analyzer":
                 
