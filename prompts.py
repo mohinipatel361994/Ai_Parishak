@@ -119,13 +119,13 @@ ai_topic_prompt1 = """
                     Ensure that all questions and answers, if required, are derived solely from the provided text. 
                     Follow these guidelines strictly:
 
-                    1. **Topic Name**: {}
-                    2. **Number of Questions**: {} (generate exactly this number of questions in the specified language(s))
-                    3. **Text**: {}   
-                    4. **Language**: {} (generate questions in the specified language(s))
-                    5. **Mode of Questions** (Questions only / Questions with Answers): {}
-                    6. **Type of Questions** (Short Questions / Long Questions / MCQ / Fill in the Blanks / True and False): {}
-                    7. **Complexity Level** (Easy / Difficult): {}
+                    
+                    1. **Number of Questions**: {} (generate exactly this number of questions in the specified language(s))
+                    2. **Text**: {}   
+                    3. **Language**: {} (generate questions in the specified language(s))
+                    4. **Mode of Questions** (Questions only / Questions with Answers): {}
+                    5. **Type of Questions** (Short Questions / Long Questions / MCQ / Fill in the Blanks / True and False): {}
+                    6. **Complexity Level** (Easy / Difficult): {}
 
                     ### Instructions:
                     - **Strictly use the content from the provided text** to formulate the questions and answers.
