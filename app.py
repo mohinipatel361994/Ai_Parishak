@@ -218,7 +218,7 @@ with st.container():
         resized_logo = logo_image.resize((150, 150))
         st.image(resized_logo)
     with col2:
-        st.markdown("# AI Pariksha Sahayak")
+        st.markdown("# GyanKosh")
         st.markdown("###### AI Based Question Generation Assistance")
     with col3:
         l = Image.open('assests/28072020125926mpsedclogo.png')
