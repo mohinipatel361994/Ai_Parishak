@@ -31,3 +31,4 @@ translate
 faiss-cpu
 pdfplumber
 langchain-community
+chat
